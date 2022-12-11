@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e30f00d7-c1f7-4aed-9656-6c8e5d8ff141" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/registration/Login.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/generated_main.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/a300fbb1cb9e0b3aba1de191de901cee/gen_dart_plugin_registrant.stamp" beforeDir="false" afterPath="$PROJECT_DIR$/build/a300fbb1cb9e0b3aba1de191de901cee/gen_dart_plugin_registrant.stamp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/HomePage/HomePage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/HomePage/HomePage.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/registration/ResetPassword.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/registration/Login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/registration/Login.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +54,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1670673028423</updated>
-      <workItem from="1670673029532" duration="1959000" />
+      <workItem from="1670673029532" duration="2327000" />
     </task>
     <servers />
   </component>

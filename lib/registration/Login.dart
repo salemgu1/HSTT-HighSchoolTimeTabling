@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:timetabler/HomePage/HomePage.dart';
+import 'package:timetabler/registration/ResetPassword.dart';
+
 
 
 class Login extends StatefulWidget {
@@ -83,7 +85,7 @@ class _LoginState extends State<Login> {
                     onPressed:() {                Navigator.push(
                         context,
                         MaterialPageRoute(builder:( context) {
-                          return Login();
+                          return ResetPassword();
                         },
                         ));},
                   ),
