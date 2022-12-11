@@ -32,7 +32,7 @@ class AfterLogin extends StatelessWidget {
     return
       Scaffold(
           appBar: AppBar(
-            title: Text('Flutter FlatButton Example'),
+            title: Text('עמוד מנהל בית הספר'),
           ),
           drawer: Drawer(
             child: ListView(
@@ -43,7 +43,7 @@ class AfterLogin extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.blue,
                   ),
-                  child: Text('Drawer Header'),
+                  child: Text('אפשרויות'),
                 ),
                 ListTile(
                   leading: Icon(

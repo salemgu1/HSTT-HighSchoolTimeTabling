@@ -55,7 +55,7 @@ class _Room extends State<Room> {
                   autofocus: true,
                   textAlign: TextAlign.center,
                   decoration:
-                  kTextFieldDecoration.copyWith(hintText: 'Enter room number.'),
+                  kTextFieldDecoration.copyWith(hintText: 'הכנסת מספר בכיתה'),
                 ),
                 const SizedBox(
                   height: 20.0,
@@ -65,7 +65,7 @@ class _Room extends State<Room> {
                   autofocus: true,
                   textAlign: TextAlign.center,
                   decoration:
-                  kTextFieldDecoration.copyWith(hintText: 'Enter number of sets.'),
+                  kTextFieldDecoration.copyWith(hintText: 'הכנסת מספר כיסאות בכיתה'),
                 ),
                 const SizedBox(
                   height: 50.0,
@@ -119,7 +119,7 @@ class _Room extends State<Room> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text("Success!"),
-          content: const Text("classRoom added successfully "),
+          content: const Text("חדר כיתה נוסף בהצלחה"),
           actions: <Widget>[
             new FlatButton(
               child: const Text("OK"),

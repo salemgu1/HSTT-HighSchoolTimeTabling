@@ -11,13 +11,13 @@ class MyApp extends StatelessWidget {
       // theme: ThemeData.dark(),
       home: Scaffold(
           appBar: AppBar(
-            title: Text('Flutter FlatButton Example'),
+            title: Text('דף ראשי'),
           ),
           body: Center(child: Column(children: <Widget>[
             Container(
               margin: EdgeInsets.all(25),
               child: FlatButton(
-                child: Text('SignUp', style: TextStyle(fontSize: 20.0),),
+                child: Text('הרשמה', style: TextStyle(fontSize: 20.0),),
                 onPressed: () {                Navigator.push(
                     context,
                     MaterialPageRoute(builder:( context) {
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
             Container(
               margin: EdgeInsets.all(25),
               child: FlatButton(
-                child: Text('LogIn', style: TextStyle(fontSize: 20.0),),
+                child: Text('כניסה', style: TextStyle(fontSize: 20.0),),
                 color: Colors.blueAccent,
                 textColor: Colors.white,
                 onPressed: () {                Navigator.push(

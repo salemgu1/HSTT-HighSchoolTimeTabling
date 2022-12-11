@@ -64,7 +64,7 @@ class _AddStudent extends State<Student> {
                   autofocus: true,
                   textAlign: TextAlign.center,
                   decoration:
-                  kTextFieldDecoration.copyWith(hintText: 'Enter name.'),
+                  kTextFieldDecoration.copyWith(hintText: 'השם:'),
                 ),
                 const SizedBox(
                   height: 20.0,
@@ -74,7 +74,7 @@ class _AddStudent extends State<Student> {
                   autofocus: true,
                   textAlign: TextAlign.center,
                   decoration:
-                  kTextFieldDecoration.copyWith(hintText: 'Enter id.'),
+                  kTextFieldDecoration.copyWith(hintText: 'מספר מזהה:'),
                 ),
                 const SizedBox(
                   height: 20.0,
@@ -84,7 +84,7 @@ class _AddStudent extends State<Student> {
                   autofocus: true,
                   textAlign: TextAlign.center,
                   decoration:
-                  kTextFieldDecoration.copyWith(hintText: 'Enter email.'),
+                  kTextFieldDecoration.copyWith(hintText: 'Email.'),
                 ),
                 const SizedBox(
                   height: 20.0,
@@ -94,7 +94,7 @@ class _AddStudent extends State<Student> {
                   autofocus: true,
                   textAlign: TextAlign.center,
                   decoration:
-                  kTextFieldDecoration.copyWith(hintText: 'Enter layer.'),
+                  kTextFieldDecoration.copyWith(hintText: 'שכבת לימוד'),
                 ),
                 const SizedBox(
                   height: 20.0,
@@ -128,7 +128,7 @@ class _AddStudent extends State<Student> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text("Success!"),
-          content: const Text("Student added successfully "),
+          content: const Text("תלמיד נוסף בהצלחה"),
           actions: <Widget>[
             new FlatButton(
               child: const Text("OK"),

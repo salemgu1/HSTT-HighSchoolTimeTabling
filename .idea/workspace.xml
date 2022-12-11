@@ -7,8 +7,6 @@
     <list default="true" id="e30f00d7-c1f7-4aed-9656-6c8e5d8ff141" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/5bfe3c7f0eff6d02ef2966de21c19c20/.filecache" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/5bfe3c7f0eff6d02ef2966de21c19c20/.filecache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/5bfe3c7f0eff6d02ef2966de21c19c20/app.dill" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/5bfe3c7f0eff6d02ef2966de21c19c20/app.dill" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/5bfe3c7f0eff6d02ef2966de21c19c20/kernel_snapshot.d" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/5bfe3c7f0eff6d02ef2966de21c19c20/kernel_snapshot.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/5bfe3c7f0eff6d02ef2966de21c19c20/kernel_snapshot.stamp" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/5bfe3c7f0eff6d02ef2966de21c19c20/kernel_snapshot.stamp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/c075001b96339384a97db4862b8ab8db.cache.dill.track.dill" beforeDir="false" afterPath="$PROJECT_DIR$/build/c075001b96339384a97db4862b8ab8db.cache.dill.track.dill" afterDir="false" />
@@ -32,6 +30,7 @@
       <change beforePath="$PROJECT_DIR$/lib/AdminPages/AddSubject.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/AdminPages/AddSubject.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/AdminPages/AddTeacher.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/AdminPages/AddTeacher.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/AdminPages/AfterLogin.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/AdminPages/AfterLogin.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/HomePage/HomePage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/HomePage/HomePage.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +79,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1670673028423</updated>
-      <workItem from="1670673029532" duration="6945000" />
+      <workItem from="1670673029532" duration="7974000" />
     </task>
     <servers />
   </component>

@@ -63,7 +63,7 @@ class _AddTeacherUser extends State<TeacherUser> {
                   autofocus: true,
                   textAlign: TextAlign.center,
                   decoration:
-                  kTextFieldDecoration.copyWith(hintText: 'Enter name.'),
+                  kTextFieldDecoration.copyWith(hintText: 'שם:'),
                 ),
                 const SizedBox(
                   height: 20.0,
@@ -73,7 +73,7 @@ class _AddTeacherUser extends State<TeacherUser> {
                   autofocus: true,
                   textAlign: TextAlign.center,
                   decoration:
-                  kTextFieldDecoration.copyWith(hintText: 'Enter id.'),
+                  kTextFieldDecoration.copyWith(hintText: 'מספר מזהה:'),
                 ),
                 const SizedBox(
                   height: 20.0,
@@ -83,7 +83,7 @@ class _AddTeacherUser extends State<TeacherUser> {
                   autofocus: true,
                   textAlign: TextAlign.center,
                   decoration:
-                  kTextFieldDecoration.copyWith(hintText: 'Enter email.'),
+                  kTextFieldDecoration.copyWith(hintText: 'Email:'),
                 ),
                 const SizedBox(
                   height: 20.0,
@@ -93,7 +93,7 @@ class _AddTeacherUser extends State<TeacherUser> {
                   autofocus: true,
                   textAlign: TextAlign.center,
                   decoration:
-                  kTextFieldDecoration.copyWith(hintText: 'Enter school id.'),
+                  kTextFieldDecoration.copyWith(hintText: 'מספר מזהה של בית ספר:'),
                 ),
                 const SizedBox(
                   height: 20.0,
@@ -137,7 +137,7 @@ class _AddTeacherUser extends State<TeacherUser> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text("Success!"),
-          content: const Text("Teacher added successfully "),
+          content: const Text("מורה נוסף בהצלחה "),
           actions: <Widget>[
             new FlatButton(
               child: const Text("OK"),

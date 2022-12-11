@@ -95,7 +95,7 @@ class _SubjectState extends State<Subject> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text("Success!"),
-          content: const Text("Subject added successfully "),
+          content: const Text("נושה נוסף בהצלחה "),
           actions: <Widget>[
             new FlatButton(
               child: const Text("OK"),
