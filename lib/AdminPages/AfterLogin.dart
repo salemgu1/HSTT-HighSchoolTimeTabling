@@ -3,6 +3,7 @@ import 'package:timetabler/registration/Login.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import '../AdminPages/AddTeacher.dart';
 import '../AdminPages/AddStudent.dart';
+import '../AdminPages/AddSubject.dart';
 
 class AfterLogin extends StatelessWidget {
 
@@ -59,7 +60,7 @@ class AfterLogin extends StatelessWidget {
                   ),
                   title: const Text('הוספת נושא'),
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder:(context)=>AfterLogin(),));
+                    Navigator.of(context).push(MaterialPageRoute(builder:(context)=>Subject(),));
                   },
                 ),
               ],
@@ -73,7 +74,7 @@ class AfterLogin extends StatelessWidget {
                 onPressed: () {               Navigator.push(
                     context,
                     MaterialPageRoute(builder:( context) {
-                      return AfterLogin();
+                      return Subject();
                     },
                     ));},
               ),
