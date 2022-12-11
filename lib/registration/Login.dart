@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:timetabler/HomePage/HomePage.dart';
 import 'package:timetabler/registration/ResetPassword.dart';
+import 'package:timetabler/AdminPages/AfterLogin.dart';
+
 
 
 
@@ -157,16 +159,8 @@ class _LoginState extends State<Login> {
     var response = await user.login();
 
     if (response.success) {
-      // if(user is Teacher) {
-      //   // Navigator.push(
-      //   //   context, MaterialPageRoute(builder: (context) => Login(),),);
-      //   // setState(() {
-      //   //   isLoggedIn = true;
-      //   // });
-      // }
-      // else {
         Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Login(),),);
+          context, MaterialPageRoute(builder: (context) => AfterLogin(),),);
         setState(() {
           isLoggedIn = true;
         });
