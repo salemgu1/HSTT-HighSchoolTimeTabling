@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e30f00d7-c1f7-4aed-9656-6c8e5d8ff141" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/AdminPages/AddTeacher.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/components/key.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/components/rounded_button.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/constants.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/AdminPages/AddStudent.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/AdminPages/AfterLogin.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/AdminPages/AfterLogin.dart" afterDir="false" />
     </list>
@@ -34,7 +31,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "dart.analysis.tool.window.visible": "false",
-    "last_opened_file_path": "/Users/salemgod/Desktop/HSTT-HighSchoolTimeTabling/lib",
+    "last_opened_file_path": "/Users/salemgod/Desktop/HSTT-HighSchoolTimeTabling/lib/AdminPages",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -45,8 +42,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/lib" />
       <recent name="$PROJECT_DIR$/lib/AdminPages" />
+      <recent name="$PROJECT_DIR$/lib" />
       <recent name="$PROJECT_DIR$/lib/registration" />
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -59,7 +56,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1670673028423</updated>
-      <workItem from="1670673029532" duration="3878000" />
+      <workItem from="1670673029532" duration="4206000" />
     </task>
     <servers />
   </component>
