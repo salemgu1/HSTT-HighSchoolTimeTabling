@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:timetabler/registration/Login.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import '../AdminPages/AddTeacher.dart';
 
 class AfterLogin extends StatelessWidget {
 
@@ -85,7 +86,7 @@ class AfterLogin extends StatelessWidget {
                 onPressed: () {               Navigator.push(
                     context,
                     MaterialPageRoute(builder:( context) {
-                      return AfterLogin();
+                      return TeacherUser();
                     },
                     ));},
               ),
