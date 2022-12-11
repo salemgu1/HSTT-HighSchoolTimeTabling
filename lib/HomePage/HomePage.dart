@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:timetabler/registration/Signup.dart';
+import 'package:timetabler/registration/Login.dart';
 
 
 class MyApp extends StatelessWidget {
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
                 onPressed: () {                Navigator.push(
                     context,
                     MaterialPageRoute(builder:( context) {
-                      return Signup();
+                      return Login();
                     },
                     ));},
               ),
