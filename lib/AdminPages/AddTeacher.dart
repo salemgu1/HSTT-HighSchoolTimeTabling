@@ -37,6 +37,7 @@ class _AddTeacherUser extends State<TeacherUser> {
     }
 
     await saveTeacher(name.text,email.text,id_number.text,school_id.text);
+    showSuccess();
     Teacher teacher = new Teacher(id_number.text,id_number.text,email.text,school_id.text);
     teacher.save();
   }
@@ -127,6 +128,27 @@ class _AddTeacherUser extends State<TeacherUser> {
     } else {
       return [];
     }
+  }
+
+
+  void showSuccess() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Success!"),
+          content: const Text("Teacher added successfully "),
+          actions: <Widget>[
+            new FlatButton(
+              child: const Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }
 // import 'package:flutter/material.dart';

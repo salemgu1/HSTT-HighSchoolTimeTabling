@@ -10,7 +10,7 @@ class Subject extends StatefulWidget {
 class _SubjectState extends State<Subject> {
   final todoController = TextEditingController();
 
-  void addToDo() async {
+  void addSubject() async {
     if (todoController.text.trim().isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Empty title"),
@@ -19,6 +19,7 @@ class _SubjectState extends State<Subject> {
       return;
     }
     await saveSubject(todoController.text);
+    showSuccess();
     setState(() {
       todoController.clear();
     });
@@ -50,7 +51,7 @@ class _SubjectState extends State<Subject> {
                         onPrimary: Colors.white,
                         primary: Colors.blueAccent,
                       ),
-                      onPressed: addToDo,
+                      onPressed: addSubject,
                       child: Text("הוספה")),
                 ],
               )),
@@ -60,8 +61,8 @@ class _SubjectState extends State<Subject> {
   }
 
   Future<void> saveSubject(String title) async {
-    final todo = ParseObject('Subject')..set('title', title)..set('done', false);
-    await todo.save();
+    final subject = ParseObject('Subject')..set('title', title)..set('done', false);
+    await subject.save();
   }
 
   Future<List<ParseObject>> getSubject() async {
@@ -86,5 +87,25 @@ class _SubjectState extends State<Subject> {
   Future<void> deleteSubject(String id) async {
     var todo = ParseObject('Subject')..objectId = id;
     await todo.delete();
+  }
+
+  void showSuccess() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Success!"),
+          content: const Text("Subject added successfully "),
+          actions: <Widget>[
+            new FlatButton(
+              child: const Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

@@ -47,21 +47,48 @@ class AfterLogin extends StatelessWidget {
                 ),
                 ListTile(
                   leading: Icon(
-                    Icons.logout,
+                    Icons.add,
                   ),
-                  title: const Text('יציאה'),
+                  title: const Text('הוספת נושא'),
                   onTap: () {
-                    doUserLogout();
-                    Navigator.of(context).push(MaterialPageRoute(builder:(context)=>Login()));
+                    Navigator.of(context).push(MaterialPageRoute(builder:(context)=>Subject(),));
                   },
                 ),
                 ListTile(
                   leading: Icon(
                     Icons.add,
                   ),
-                  title: const Text('הוספת נושא'),
+                  title: const Text('הוספת מורה'),
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder:(context)=>Subject(),));
+                    Navigator.of(context).push(MaterialPageRoute(builder:(context)=>TeacherUser(),));
+                  },
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.add,
+                  ),
+                  title: const Text('הוספת תלמיד'),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder:(context)=>Student(),));
+                  },
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.add,
+                  ),
+                  title: const Text('הוספת כיתה'),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder:(context)=>Room(),));
+                  },
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.logout,
+                  ),
+                  title: const Text('יציאה'),
+                  onTap: () {
+                    doUserLogout();
+                    Navigator.of(context).push(MaterialPageRoute(builder:(context)=>Login()));
                   },
                 ),
               ],

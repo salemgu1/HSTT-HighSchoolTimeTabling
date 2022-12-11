@@ -22,7 +22,7 @@ class _Room extends State<Room> {
   final room_id= TextEditingController();
 
 
-  void addUser() async {
+  void addRoom() async {
     if (sets.text.trim().isEmpty && room_id.text.trim().isEmpty && room_type.trim().isEmpty) {
       SnackBar(
         content: Text("Empty title"),
@@ -31,6 +31,7 @@ class _Room extends State<Room> {
       return;
     }
     await saveTeacher(sets.text,room_id.text,room_type);
+    showSuccess();
   }
   @override
   Widget build(BuildContext context) {
@@ -97,7 +98,7 @@ class _Room extends State<Room> {
                       onPrimary: Colors.white,
                       primary: Colors.blueAccent,
                     ),
-                    onPressed: addUser,
+                    onPressed: addRoom,
                     child: Text("הוספה")),
               ],
             ),
@@ -110,5 +111,25 @@ class _Room extends State<Room> {
   Future<void> saveTeacher(String sets, String id,String room_type) async {
     final room = ParseObject('Room')..set('sets', sets)..set('room_id', id)..set('room_type', room_type);
     await room.save();
+  }
+
+  void showSuccess() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Success!"),
+          content: const Text("classRoom added successfully "),
+          actions: <Widget>[
+            new FlatButton(
+              child: const Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

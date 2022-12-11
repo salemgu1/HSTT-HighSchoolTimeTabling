@@ -39,6 +39,7 @@ class _AddStudent extends State<Student> {
       return;
     }
     await saveStudent(name.text, email.text, layer.text, id_number.text);
+    showSuccess();
   }
 
   @override
@@ -119,5 +120,25 @@ class _AddStudent extends State<Student> {
       ..set('name', name)..set('email', email)..set(
           'layer', layer)..set('id_number', id);
     await student.save();
+  }
+
+  void showSuccess() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Success!"),
+          content: const Text("Student added successfully "),
+          actions: <Widget>[
+            new FlatButton(
+              child: const Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }
