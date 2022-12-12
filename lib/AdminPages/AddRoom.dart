@@ -37,6 +37,9 @@ class _Room extends State<Room> {
   Widget build(BuildContext context) {
     return new MaterialApp(
       home: new Scaffold(
+        appBar: AppBar(
+          title: Text('הוספת כיתת לימוד'),
+        ),
         backgroundColor: const Color(0xffF2F2F2),
         body: SingleChildScrollView(
           child: Container(

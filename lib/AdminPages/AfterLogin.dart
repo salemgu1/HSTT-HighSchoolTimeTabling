@@ -97,6 +97,7 @@ class AfterLogin extends StatelessWidget {
           body: Center(child: Column(children: <Widget>[
             Container(
               margin: EdgeInsets.all(25),
+              color: Colors.teal[200],
               child: FlatButton(
                 child: Text('הוספת נושא', style: TextStyle(fontSize: 20.0),),
                 onPressed: () {               Navigator.push(
@@ -125,6 +126,7 @@ class AfterLogin extends StatelessWidget {
               margin: EdgeInsets.all(25),
               child: FlatButton(
                 child: Text('הוספת תלמיד', style: TextStyle(fontSize: 20.0),),
+                color: Colors.red[200],
                 onPressed: () {               Navigator.push(
                     context,
                     MaterialPageRoute(builder:( context) {
@@ -137,6 +139,7 @@ class AfterLogin extends StatelessWidget {
               margin: EdgeInsets.all(25),
               child: FlatButton(
                 child: Text('הוספת כיתה', style: TextStyle(fontSize: 20.0),),
+                color: Colors.orange[400],
                 onPressed: () {               Navigator.push(
                     context,
                     MaterialPageRoute(builder:( context) {

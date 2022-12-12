@@ -46,6 +46,9 @@ class _AddStudent extends State<Student> {
   Widget build(BuildContext context) {
     return new MaterialApp(
       home: new Scaffold(
+        appBar: AppBar(
+          title: Text('הוספת תלמיד לבית הספר'),
+        ),
         backgroundColor: const Color(0xffF2F2F2),
         body: SingleChildScrollView(
           child: Container(
@@ -64,7 +67,7 @@ class _AddStudent extends State<Student> {
                   autofocus: true,
                   textAlign: TextAlign.center,
                   decoration:
-                  kTextFieldDecoration.copyWith(hintText: 'השם:'),
+                  kTextFieldDecoration.copyWith(hintText: 'שם'),
                 ),
                 const SizedBox(
                   height: 20.0,
@@ -74,7 +77,7 @@ class _AddStudent extends State<Student> {
                   autofocus: true,
                   textAlign: TextAlign.center,
                   decoration:
-                  kTextFieldDecoration.copyWith(hintText: 'מספר מזהה:'),
+                  kTextFieldDecoration.copyWith(hintText: 'מספר מזהה'),
                 ),
                 const SizedBox(
                   height: 20.0,
@@ -84,7 +87,7 @@ class _AddStudent extends State<Student> {
                   autofocus: true,
                   textAlign: TextAlign.center,
                   decoration:
-                  kTextFieldDecoration.copyWith(hintText: 'Email.'),
+                  kTextFieldDecoration.copyWith(hintText: 'Email'),
                 ),
                 const SizedBox(
                   height: 20.0,

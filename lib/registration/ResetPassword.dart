@@ -89,7 +89,6 @@ class _ResetPasswordState extends State<ResetPassword> {
       },
     );
   }
-
   void doUserResetPassword() async {
     print("password");
     final ParseUser user = ParseUser(null, null, controllerEmail.text.trim());

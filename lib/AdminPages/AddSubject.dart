@@ -28,6 +28,9 @@ class _SubjectState extends State<Subject> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('הוספת נושא לימוד'),
+      ),
       body: Column(
         children: <Widget>[
           Container(
@@ -95,7 +98,7 @@ class _SubjectState extends State<Subject> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text("Success!"),
-          content: const Text("נושה נוסף בהצלחה "),
+          content: const Text("נושא נוסף בהצלחה "),
           actions: <Widget>[
             new FlatButton(
               child: const Text("OK"),

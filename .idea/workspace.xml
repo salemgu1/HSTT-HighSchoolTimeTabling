@@ -16,13 +16,11 @@
       <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/App" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/App" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/_CodeSignature/CodeResources" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/_CodeSignature/CodeResources" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/kernel_blob.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Info.plist" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Runner" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Runner" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/_CodeSignature/CodeResources" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/_CodeSignature/CodeResources" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/App.framework/App" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/App.framework/App" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/App.framework/_CodeSignature/CodeResources" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/App.framework/_CodeSignature/CodeResources" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/kernel_blob.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Info.plist" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Runner" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Runner" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/_CodeSignature/CodeResources" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/_CodeSignature/CodeResources" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/AdminPages/AddRoom.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/AdminPages/AddRoom.dart" afterDir="false" />
@@ -30,7 +28,9 @@
       <change beforePath="$PROJECT_DIR$/lib/AdminPages/AddSubject.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/AdminPages/AddSubject.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/AdminPages/AddTeacher.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/AdminPages/AddTeacher.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/AdminPages/AfterLogin.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/AdminPages/AfterLogin.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/HomePage/HomePage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/HomePage/HomePage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/registration/Login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/registration/Login.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/registration/ResetPassword.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/registration/ResetPassword.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/registration/Signup.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/registration/Signup.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +79,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1670673028423</updated>
-      <workItem from="1670673029532" duration="7974000" />
+      <workItem from="1670673029532" duration="11075000" />
     </task>
     <servers />
   </component>

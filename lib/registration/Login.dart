@@ -92,16 +92,6 @@ class _LoginState extends State<Login> {
                         ));},
                   ),
                 ),
-                SizedBox(
-                  height: 16,
-                ),
-                Container(
-                  height: 50,
-                  child: TextButton(
-                    child: const Text('Logout'),
-                    onPressed: !isLoggedIn ? null : () => doUserLogout(),
-                  ),
-                )
               ],
             ),
           ),
