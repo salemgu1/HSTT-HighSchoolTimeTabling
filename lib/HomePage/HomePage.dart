@@ -43,7 +43,11 @@ class MyApp extends StatelessWidget {
             Divider(
               color: Colors.black,
               thickness: 2,
-            )
+            ),
+            Text('Go tabling ', style: TextStyle(color: Colors.red,fontSize: 20.0)),
+            Text('הינה מערכת שתבנה עבורכם את מערכת השעות ',style: TextStyle(color:Colors.blue,fontSize: 20.0 ),),
+            Text('.האופטימלית עבור בית הספר שלכם', style: TextStyle(color:Colors.blue,fontSize: 20.0),),
+
           ]
           ))
 
