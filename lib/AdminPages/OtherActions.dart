@@ -7,6 +7,7 @@ import '../AdminPages/AddSubject.dart';
 import '../AdminPages/AddRoom.dart';
 import '../AdminPages/Teachers.dart';
 import '../AdminPages/Students.dart';
+import '../AdminPages/Rooms.dart';
 
 class OtherActions extends StatelessWidget {
 
@@ -41,6 +42,19 @@ class OtherActions extends StatelessWidget {
                     context,
                     MaterialPageRoute(builder:( context) {
                       return Students();
+                    },
+                    ));},
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(25),
+              child: FlatButton(
+                child: Text('הצגת חדרים', style: TextStyle(fontSize: 20.0),),
+                color: Colors.blue[200],
+                onPressed: () {               Navigator.push(
+                    context,
+                    MaterialPageRoute(builder:( context) {
+                      return Rooms();
                     },
                     ));},
               ),
