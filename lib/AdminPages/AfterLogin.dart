@@ -5,6 +5,7 @@ import '../AdminPages/AddTeacher.dart';
 import '../AdminPages/AddStudent.dart';
 import '../AdminPages/AddSubject.dart';
 import '../AdminPages/AddRoom.dart';
+import '../AdminPages/OtherActions.dart';
 
 class AfterLogin extends StatelessWidget {
 
@@ -144,6 +145,20 @@ class AfterLogin extends StatelessWidget {
                     context,
                     MaterialPageRoute(builder:( context) {
                       return Room();
+                    },
+                    ));},
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(25),
+              child: FlatButton(
+                child: Text('...פעולות נוספות', style: TextStyle(fontSize: 20.0),),
+                color: Colors.blueAccent,
+                textColor: Colors.white,
+                onPressed: () {               Navigator.push(
+                    context,
+                    MaterialPageRoute(builder:( context) {
+                      return OtherActions();
                     },
                     ));},
               ),
