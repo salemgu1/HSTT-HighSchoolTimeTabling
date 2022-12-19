@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:timetabler/registration/Login.dart';
+import '../registration/Login.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import '../AdminPages/AddTeacher.dart';
 import '../AdminPages/AddStudent.dart';
@@ -8,6 +8,7 @@ import '../AdminPages/AddRoom.dart';
 import '../AdminPages/Teachers.dart';
 import '../AdminPages/Students.dart';
 import '../AdminPages/Rooms.dart';
+import '../AdminPages/Subjects.dart';
 
 class OtherActions extends StatelessWidget {
 
@@ -50,11 +51,24 @@ class OtherActions extends StatelessWidget {
               margin: EdgeInsets.all(25),
               child: FlatButton(
                 child: Text('הצגת חדרים', style: TextStyle(fontSize: 20.0),),
-                color: Colors.blue[200],
+                color: Colors.blue[700],
                 onPressed: () {               Navigator.push(
                     context,
                     MaterialPageRoute(builder:( context) {
                       return Rooms();
+                    },
+                    ));},
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(25),
+              child: FlatButton(
+                child: Text('הצגת נושאים', style: TextStyle(fontSize: 20.0),),
+                color: Colors.red[700],
+                onPressed: () {               Navigator.push(
+                    context,
+                    MaterialPageRoute(builder:( context) {
+                      return Subjects();
                     },
                     ));},
               ),
