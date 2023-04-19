@@ -6,11 +6,11 @@
 	<dict>
 		<key>Info.plist</key>
 		<data>
-		2WH3EkzfNpYxRzEQezsUEM18s6A=
+		85iaADE5tc/NukRC+KGdiZaZ0ZA=
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		oG5/OGn+vw7vp/nu5DUDoZJ4nFc=
+		rFOdTDoYZCsxEmjsJRu+8fwDu+A=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -18,27 +18,75 @@
 		</data>
 		<key>flutter_assets/NOTICES.Z</key>
 		<data>
-		89zYvlK94Nyl7em+klX0Lyd7HvY=
+		bRW+LswHrewq9eOmwp5NqlVhjK0=
 		</data>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
-		33xe6rFwPlxRnZOgZWsODADpUI4=
+		/CUoTuPQqqdexfyOT9lpJhV+2MQ=
 		</data>
 		<key>flutter_assets/isolate_snapshot_data</key>
 		<data>
-		/8YINIQYa2MGeFNAjTVvMEJmvKA=
+		xbo3iIc8fTnuE5W4XE0VFw6QIBI=
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		HvbYoS+TqdMFVoBg7W6IBpHsv7Y=
+		MxIt0+R/9c+GDXmoCxHMhHlu/YI=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
 		P7bb/oR3EhwqCIH1M6LyTuBIWYU=
 		</data>
+		<key>flutter_assets/packages/getwidget/icons/dribble.png</key>
+		<data>
+		IhBls3j60Qlvhtw3WEzNvtyoMos=
+		</data>
+		<key>flutter_assets/packages/getwidget/icons/facebook.png</key>
+		<data>
+		emY35unZ7KqHcekKPwnuwnLwp0E=
+		</data>
+		<key>flutter_assets/packages/getwidget/icons/google.png</key>
+		<data>
+		uruiTt0JHcZyfEIAG2wi4plW9LU=
+		</data>
+		<key>flutter_assets/packages/getwidget/icons/line.png</key>
+		<data>
+		hkrKms2iY/fcRg28R7mqaI1M7fA=
+		</data>
+		<key>flutter_assets/packages/getwidget/icons/linkedin.png</key>
+		<data>
+		MifvcrVngn1m+7NSPahTEWAv398=
+		</data>
+		<key>flutter_assets/packages/getwidget/icons/pinterest.png</key>
+		<data>
+		G1w5nM25hN+9bJ78K6TUBbs4OCs=
+		</data>
+		<key>flutter_assets/packages/getwidget/icons/slack.png</key>
+		<data>
+		o+0RlP7rdiE/SBdhx5SG5mWW+fQ=
+		</data>
+		<key>flutter_assets/packages/getwidget/icons/twitter.png</key>
+		<data>
+		h1mwdFeE9+a8ZBg93T4s2WPw+gk=
+		</data>
+		<key>flutter_assets/packages/getwidget/icons/wechat.png</key>
+		<data>
+		jhAdSHEN/B2KTbyL+20xlZuw6Sw=
+		</data>
+		<key>flutter_assets/packages/getwidget/icons/whatsapp.png</key>
+		<data>
+		W+UgjuY6eDLBR9rq9wxAiXjWUHk=
+		</data>
+		<key>flutter_assets/packages/getwidget/icons/youtube.png</key>
+		<data>
+		BIOto5CMq0sf0LQm5trVIIRl/Dk=
+		</data>
+		<key>flutter_assets/shaders/ink_sparkle.frag</key>
+		<data>
+		Z/DhfUUahgFGsthszkW1YubfdU8=
+		</data>
 		<key>flutter_assets/vm_snapshot_data</key>
 		<data>
-		kzk1wp8qHso+VmYD8lJ5+HidZCw=
+		bjcE383nCc8U85vWBdZ80X32NVA=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -47,7 +95,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Sps95+7JukayebvM0TLjL1LW1VXXndpKp/O8tOm9ZR8=
+			7zWkq7R/YvQAXjvDMRKTqG6Z8wbRWbgW+VTMDKDwiUk=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -61,28 +109,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			SIQh76q0NmVPWRQn0d14/uMmvimAPBxuDvjddFp+5gE=
+			XS/E5iJd5yYViFTJDdboPdVKr21nCgueA3hTS4hi/Ps=
 			</data>
 		</dict>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			0E0I/gLatnGI9y4elyWPSg2LWYJSPgLt6hMvgJD5+rQ=
+			2YZbZxoJ1oPROoYwidiCXg9ho3aWzl19RIvIAjqmJFM=
 			</data>
 		</dict>
 		<key>flutter_assets/isolate_snapshot_data</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			GiXyiy84iwHokWSI8cF+JQcEiNYwhXKJ6iopY39uCfo=
+			76aJUrz/yLBliHLDcOlVu+tPuICHsFWS91Ovpysst2I=
 			</data>
 		</dict>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			wVjTOsbIg0ewaQI9C3AHE12vBebibk5ScXuHETA/VXY=
+			bJOqepHeiKDNWGmOcMHj7H+ppnZRtnxO7vkHlPYDJC0=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -92,11 +140,95 @@
 			x6NX+tjyECiQtyzbbjyY8U2zoZ7GDbJtE+T+k/dzgI0=
 			</data>
 		</dict>
+		<key>flutter_assets/packages/getwidget/icons/dribble.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			GxWgJiFtBJFTy3RCbDu/5vOXXkBRLvRBx2BYQlb9hU8=
+			</data>
+		</dict>
+		<key>flutter_assets/packages/getwidget/icons/facebook.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			kmC0tI/BzdPaD/ZBQ9ABSy9YVHDbR6uAv/BEylWQhnA=
+			</data>
+		</dict>
+		<key>flutter_assets/packages/getwidget/icons/google.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			V5LQ/jh6OPcDUsU+IpSUeVbiMQMg8T2sqX8iuFSFL8g=
+			</data>
+		</dict>
+		<key>flutter_assets/packages/getwidget/icons/line.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			QYtH2+I11ZLHhRyp8N2Blvsd95GX6YfLYVVE1+czSkg=
+			</data>
+		</dict>
+		<key>flutter_assets/packages/getwidget/icons/linkedin.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			+0iF1ek8zwTklP8B3xIb/IpslxS2ACrus9DI/50yOgA=
+			</data>
+		</dict>
+		<key>flutter_assets/packages/getwidget/icons/pinterest.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			u4JCwkooYDgckJb2cwiUwPiXD/ajcycfAXD9W0fGK4E=
+			</data>
+		</dict>
+		<key>flutter_assets/packages/getwidget/icons/slack.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			xLcRSiZIudtRzfjFkJZHd94vCtGs7TgWIlZQ4AeOe/w=
+			</data>
+		</dict>
+		<key>flutter_assets/packages/getwidget/icons/twitter.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			MKSDvArvKeH0udu+FYONJ1PwMQA3d/1tYTrU1HZmY9E=
+			</data>
+		</dict>
+		<key>flutter_assets/packages/getwidget/icons/wechat.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			9KM/cvghv3+aYqy9dSL+wJSHTfQ3ZcEtddi1aNAk120=
+			</data>
+		</dict>
+		<key>flutter_assets/packages/getwidget/icons/whatsapp.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			IZh0VpiNef5YRCvLukENbQ8+ybWzXVlVl4ed2Y49tZQ=
+			</data>
+		</dict>
+		<key>flutter_assets/packages/getwidget/icons/youtube.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			LYrVbEaci60C8hyPlXee17OVneNRjSza34zdiuTOo38=
+			</data>
+		</dict>
+		<key>flutter_assets/shaders/ink_sparkle.frag</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			hgGex10sKxTSC95tzLdljzYd3qnntuSb96YXXaU9Nlc=
+			</data>
+		</dict>
 		<key>flutter_assets/vm_snapshot_data</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			SWudSb+UjFAbtsuvOflVVEzSQrNcWWVHTwGa+DH02Gs=
+			L69dzlyAJyxdLVGPUFBuUaiyjDwAOUWCUp3TXXm9RjY=
 			</data>
 		</dict>
 	</dict>

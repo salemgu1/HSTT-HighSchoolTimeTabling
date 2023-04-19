@@ -124,7 +124,7 @@ class _Signup extends State<Signup> {
           title: const Text("Success!"),
           content: const Text("User was successfully created! Please verify your email before Login"),
           actions: <Widget>[
-            new FlatButton(
+            new TextButton(
               child: const Text("OK"),
               onPressed: () {
                 Navigator.of(context).pop();
@@ -144,7 +144,7 @@ class _Signup extends State<Signup> {
           title: const Text("Error!"),
           content: Text(errorMessage),
           actions: <Widget>[
-            new FlatButton(
+            new TextButton(
               child: const Text("OK"),
               onPressed: () {
                 Navigator.of(context).pop();

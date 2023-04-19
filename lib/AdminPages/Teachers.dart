@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import 'package:timetabler/AdminPages/updateTeacher.dart';
 
 
 class Teachers extends StatefulWidget {
@@ -14,7 +15,7 @@ class _TeachersState extends State<Teachers> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Teachers List"),
+        title: Text("רשימת מורים"),
         backgroundColor: Colors.blueAccent,
         centerTitle: true,
       ),
@@ -50,27 +51,42 @@ class _TeachersState extends State<Teachers> {
                               itemBuilder: (context, index) {
                                 //*************************************
                                 //Get Parse Object Value
-                                final varTodo = snapshot.data![index];
-                                final varId = snapshot.data![index]['id_number'];
+                                // final varTodo = snapshot.data![index];
+                                final teacherId = snapshot.data![index]['id_number'];
+                                final teacherObjectId = snapshot.data![index]['objectId'];
                                 final varName = snapshot.data![index]['name'];
+                                final teacherEmail = snapshot.data![index]['email'];
                                 final varDone = false;
                                 //*************************************
 
                                 return ListTile(
-                                  title: Text(varId),
+                                  title: Text(teacherId),
                                   trailing: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
+                                      IconButton(
+                                        icon: Icon(
+                                          Icons.edit,
+                                          color: Colors.blue,
+                                        ),
+                                    onPressed: () { Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder:( context) {
+                                    return UpdateTeacherDetailsButton(teacherId: snapshot.data![index]['objectId'],);
+                                    },
+                                    ));},
+
+                                      ),
                                       IconButton(
                                         icon: Icon(
                                           Icons.delete,
                                           color: Colors.blue,
                                         ),
                                         onPressed: () async {
-                                          await deleteTeacher(varTodo.objectId!);
+
                                           setState(() {
                                             final snackBar = SnackBar(
-                                              content: Text("Teacher deleted!"),
+                                              content: Text("המורה נמחק!"),
                                               duration: Duration(seconds: 2),
                                             );
                                             ScaffoldMessenger.of(context)
@@ -78,7 +94,8 @@ class _TeachersState extends State<Teachers> {
                                               ..showSnackBar(snackBar);
                                           });
                                         },
-                                      )
+
+                                      ),
                                     ],
                                   ),
                                 );
@@ -104,7 +121,33 @@ class _TeachersState extends State<Teachers> {
   }
 
 
-  Future<void> deleteTeacher(String id) async {
+  Future<List> deleteTeacher(String teacherEmail) async {
+    QueryBuilder<ParseUser> queryUsers =
+    QueryBuilder<ParseUser>(ParseUser.forQuery());
+    final ParseResponse apiResponse = await queryUsers.query();
+
+    if (apiResponse.success && apiResponse.results != null) {
+      for (int i = 0; i < apiResponse.results!.length; i++) {
+        if (apiResponse.results![i].email == teacherEmail) {
+          print("adasdasdas");
+        }
+      }
+      return apiResponse.results as List<ParseObject>;
+    } else {
+      return [];
+    }
+
+
+    // final user = ParseObject('User')..objectId = ;
+    // final teacher = ParseObject('Teacher')..objectId = teacherId;
+    //
+    // try {
+    //   await teacher.delete();
+    //   print('Teacher deleted successfully.');
+    // } catch (e) {
+    //   print('Error deleting teacher: ${e.toString()}');
+    // }
+
   }
 
 

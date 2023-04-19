@@ -3,6 +3,13 @@ import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:timetabler/HomePage/HomePage.dart';
 import 'package:timetabler/registration/ResetPassword.dart';
 import 'package:timetabler/AdminPages/AfterLogin.dart';
+import '../AdminPages/AddTeacher.dart';
+
+
+import '../AdminPages/AddRoom.dart';
+import '../MaxSat/SchedulePage.dart';
+import '../teacherPages/TeacherSchedule.dart';
+import '../teacherPages/teacherAfterLoginPage.dart';
 
 
 
@@ -92,6 +99,16 @@ class _LoginState extends State<Login> {
                         ));},
                   ),
                 ),
+                SizedBox(
+                  height: 16,
+                ),
+                Container(
+                  height: 50,
+                  child: TextButton(
+                    child: const Text('Logout'),
+                    onPressed: !isLoggedIn ? null : () => doUserLogout(),
+                  ),
+                )
               ],
             ),
           ),
@@ -139,23 +156,54 @@ class _LoginState extends State<Login> {
   }
 
   void doUserLogin() async {
-    print(ThemeData.dark());
 
     final username = controllerUsername.text.trim();
     final password = controllerPassword.text.trim();
 
     final user = ParseUser(username, password, null);
 
+
     var response = await user.login();
+    List<String> teachers = [];
+    List<String> students = [];
+    final teathersDB = await getTeacher();
+
+
+    for (int i = 0; i < teathersDB.length; i++) {
+      teachers.add(teathersDB[i]["id_number"]);
+    }
 
     if (response.success) {
+      if (teachers.contains(user.username)) {
+        Navigator.push(
+          // SchedulePage
+          // teacherAfterLogin
+          context, MaterialPageRoute(builder: (context) => teacherAfterLogin(),),);
+        setState(() {
+          isLoggedIn = true;
+        });
+      } else {
         Navigator.push(
           context, MaterialPageRoute(builder: (context) => AfterLogin(),),);
         setState(() {
           isLoggedIn = true;
         });
-    } else {
+      }
+    }else {
       showError(response.error!.message);
+    }
+  }
+
+
+  Future<List<ParseObject>> getTeacher() async {
+    QueryBuilder<ParseObject> queryTeacher =
+    QueryBuilder<ParseObject>(ParseObject('Teacher'));
+    final ParseResponse apiResponse = await queryTeacher.query();
+
+    if (apiResponse.success && apiResponse.results != null) {
+      return apiResponse.results as List<ParseObject>;
+    } else {
+      return [];
     }
   }
 

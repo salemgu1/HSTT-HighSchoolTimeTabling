@@ -14,7 +14,7 @@ class _SubjectsState extends State<Subjects> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Subjects List"),
+        title: Text("רשימת נושאי לימוד"),
         backgroundColor: Colors.blueAccent,
         centerTitle: true,
       ),
@@ -22,7 +22,7 @@ class _SubjectsState extends State<Subjects> {
         children: <Widget>[
           Expanded(
               child: FutureBuilder<List<ParseObject>>(
-                  future: getSubject(),
+                  future: getSubjects(),
                   builder: (context, snapshot) {
                     switch (snapshot.connectionState) {
                       case ConnectionState.none:
@@ -68,7 +68,7 @@ class _SubjectsState extends State<Subjects> {
                                         onPressed: () async {
                                           setState(() {
                                             final snackBar = SnackBar(
-                                              content: Text("Subject deleted!"),
+                                              content: Text("הנושה נמחק!"),
                                               duration: Duration(seconds: 2),
                                             );
                                             ScaffoldMessenger.of(context)
@@ -89,7 +89,7 @@ class _SubjectsState extends State<Subjects> {
     );
   }
 
-  Future<List<ParseObject>> getSubject() async {
+  Future<List<ParseObject>> getSubjects() async {
     QueryBuilder<ParseObject> querySubject =
     QueryBuilder<ParseObject>(ParseObject('Subject'));
     final ParseResponse apiResponse = await querySubject.query();

@@ -14,7 +14,7 @@ class _StudentsState extends State<Students> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Students List"),
+        title: Text("רשימת תלמידים"),
         backgroundColor: Colors.blueAccent,
         centerTitle: true,
       ),
@@ -69,7 +69,7 @@ class _StudentsState extends State<Students> {
                                         onPressed: () async {
                                           setState(() {
                                             final snackBar = SnackBar(
-                                              content: Text("Teacher deleted!"),
+                                              content: Text("המורה נמחק!"),
                                               duration: Duration(seconds: 2),
                                             );
                                             ScaffoldMessenger.of(context)

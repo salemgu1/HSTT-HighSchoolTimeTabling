@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import 'package:provider/provider.dart';
 import 'package:timetabler/registration/Signup.dart';
 import 'package:timetabler/registration/Login.dart';
 
+import '../DarkMode/ThemeProvider.dart';
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       // theme: ThemeData.dark(),
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: Provider.of<ThemeProvider>(context).isDarkMode ? ThemeMode.dark : ThemeMode.light,
       home: Scaffold(
           appBar: AppBar(
-            title: Text('דף ראשי'),
+            title: Text('דף ראשי',),
           ),
           body: Center(child: Column(children: <Widget>[
             Container(
+
               margin: EdgeInsets.all(25),
-              child: FlatButton(
+
+              child: TextButton(
                 child: Text('הרשמה', style: TextStyle(fontSize: 20.0),),
                 onPressed: () {                Navigator.push(
                     context,
@@ -28,10 +35,10 @@ class MyApp extends StatelessWidget {
             ),
             Container(
               margin: EdgeInsets.all(25),
-              child: FlatButton(
+              child: TextButton(
                 child: Text('כניסה', style: TextStyle(fontSize: 20.0),),
-                color: Colors.blueAccent,
-                textColor: Colors.white,
+                // color: Colors.blueAccent,
+                // textColor: Colors.white,
                 onPressed: () {                Navigator.push(
                     context,
                     MaterialPageRoute(builder:( context) {

@@ -99,7 +99,7 @@ class AfterLogin extends StatelessWidget {
             Container(
               margin: EdgeInsets.all(25),
               color: Colors.teal[200],
-              child: FlatButton(
+              child: TextButton(
                 child: Text('הוספת נושא', style: TextStyle(fontSize: 20.0),),
                 onPressed: () {               Navigator.push(
                     context,
@@ -111,10 +111,11 @@ class AfterLogin extends StatelessWidget {
             ),
             Container(
               margin: EdgeInsets.all(25),
-              child: FlatButton(
+              color: Colors.teal[600],
+              child: TextButton(
                 child: Text('הוספת מורה', style: TextStyle(fontSize: 20.0),),
-                color: Colors.blueAccent,
-                textColor: Colors.white,
+                // color: Colors.blueAccent,
+                // textColor: Colors.white,
                 onPressed: () {               Navigator.push(
                     context,
                     MaterialPageRoute(builder:( context) {
@@ -125,9 +126,10 @@ class AfterLogin extends StatelessWidget {
             ),
             Container(
               margin: EdgeInsets.all(25),
-              child: FlatButton(
+              color: Colors.green[400],
+              child: TextButton(
                 child: Text('הוספת תלמיד', style: TextStyle(fontSize: 20.0),),
-                color: Colors.red[200],
+                // color: Colors.red[200],
                 onPressed: () {               Navigator.push(
                     context,
                     MaterialPageRoute(builder:( context) {
@@ -138,9 +140,10 @@ class AfterLogin extends StatelessWidget {
             ),
             Container(
               margin: EdgeInsets.all(25),
-              child: FlatButton(
+              color: Colors.cyan[200],
+              child: TextButton(
                 child: Text('הוספת כיתה', style: TextStyle(fontSize: 20.0),),
-                color: Colors.orange[400],
+                // color: Colors.orange[400],
                 onPressed: () {               Navigator.push(
                     context,
                     MaterialPageRoute(builder:( context) {
@@ -151,10 +154,11 @@ class AfterLogin extends StatelessWidget {
             ),
             Container(
               margin: EdgeInsets.all(25),
-              child: FlatButton(
+              color: Colors.blueGrey[900],
+              child: TextButton(
                 child: Text('...פעולות נוספות', style: TextStyle(fontSize: 20.0),),
-                color: Colors.blueAccent,
-                textColor: Colors.white,
+                // color: Colors.blueAccent,
+                // textColor: Colors.white,
                 onPressed: () {               Navigator.push(
                     context,
                     MaterialPageRoute(builder:( context) {

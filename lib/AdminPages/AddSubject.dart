@@ -50,12 +50,18 @@ class _SubjectState extends State<Subject> {
                     ),
                   ),
                   ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        onPrimary: Colors.white,
-                        primary: Colors.blueAccent,
-                      ),
-                      onPressed: addSubject,
-                      child: Text("הוספה")),
+                    child: const Text('הוספה'),
+                    onPressed: () {
+                      addSubject();
+                      Navigator.pop(context);
+                    },
+                      // style: ElevatedButton.styleFrom(
+                      //   onPrimary: Colors.white,
+                      //   primary: Colors.blueAccent,
+                      // ),
+                      // onPressed: addSubject,
+                      // child: Text("הוספה")
+                  ),
                 ],
               )),
         ],
@@ -100,7 +106,7 @@ class _SubjectState extends State<Subject> {
           title: const Text("Success!"),
           content: const Text("נושא נוסף בהצלחה "),
           actions: <Widget>[
-            new FlatButton(
+            new TextButton(
               child: const Text("OK"),
               onPressed: () {
                 Navigator.of(context).pop();

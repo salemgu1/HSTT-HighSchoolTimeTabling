@@ -32,7 +32,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'Username'),
+                      labelText: 'Email'),
                 ),
                 SizedBox(
                   height: 16,

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:timetabler/HomePage/HomePage.dart';
+import 'package:provider/provider.dart';
+
+import 'DarkMode/ThemeProvider.dart';
+
 
 
 Future<void> main() async {
@@ -12,9 +16,16 @@ Future<void> main() async {
   await Parse().initialize(keyApplicationId, keyParseServerUrl,
       clientKey: keyClientKey, autoSendSessionId: true);
 
-  runApp(MaterialApp(
-      home: MyApp()
-  ));
+
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: MaterialApp(home :MyApp()),
+    ),
+  );
+  // runApp(MaterialApp(
+  //     home: MyApp()
+  // ));
 }
 
 class App extends StatelessWidget {

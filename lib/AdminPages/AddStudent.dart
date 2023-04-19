@@ -103,12 +103,18 @@ class _AddStudent extends State<Student> {
                   height: 20.0,
                 ),
                 ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      onPrimary: Colors.white,
-                      primary: Colors.blueAccent,
-                    ),
-                    onPressed: addUser,
-                    child: Text("הוספה")),
+                  child: const Text('הוספה'),
+                  onPressed: () {
+                    addUser();
+                    Navigator.pop(context);
+                  },
+                    // style: ElevatedButton.styleFrom(
+                    //   onPrimary: Colors.white,
+                    //   primary: Colors.blueAccent,
+                    // ),
+                    // onPressed: addUser,
+                    // child: Text("הוספה")
+                ),
               ],
             ),
           ),
@@ -133,7 +139,7 @@ class _AddStudent extends State<Student> {
           title: const Text("Success!"),
           content: const Text("תלמיד נוסף בהצלחה"),
           actions: <Widget>[
-            new FlatButton(
+            new TextButton(
               child: const Text("OK"),
               onPressed: () {
                 Navigator.of(context).pop();

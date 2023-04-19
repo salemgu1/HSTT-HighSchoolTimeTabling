@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import 'package:timetabler/AdminPages/updateRoom.dart';
 
 
 class Rooms extends StatefulWidget {
@@ -14,7 +15,7 @@ class _RoomsState extends State<Rooms> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Rooms List"),
+        title: Text("רשימת חדרים"),
         backgroundColor: Colors.blueAccent,
         centerTitle: true,
       ),
@@ -60,6 +61,19 @@ class _RoomsState extends State<Rooms> {
                                   trailing: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
+                                      IconButton(
+                                        icon: Icon(
+                                          Icons.edit,
+                                          color: Colors.blue,
+                                        ),
+                                        onPressed: () { Navigator.push(
+                                            context,
+                                            MaterialPageRoute(builder:( context) {
+                                              return UpdateRoomButton(roomId: snapshot.data![index]['objectId'],);
+                                            },
+                                            ));},
+
+                                      ),
                                       IconButton(
                                         icon: Icon(
                                           Icons.delete,

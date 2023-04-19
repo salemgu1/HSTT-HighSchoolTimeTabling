@@ -23,9 +23,9 @@ class OtherActions extends StatelessWidget {
           body: Center(child: Column(children: <Widget>[
             Container(
               margin: EdgeInsets.all(25),
-              child: FlatButton(
+              child: TextButton(
                 child: Text('הצגת מורים', style: TextStyle(fontSize: 20.0),),
-                color: Colors.red[200],
+                // color: Colors.red[200],
                 onPressed: () {               Navigator.push(
                     context,
                     MaterialPageRoute(builder:( context) {
@@ -36,9 +36,9 @@ class OtherActions extends StatelessWidget {
             ),
             Container(
               margin: EdgeInsets.all(25),
-              child: FlatButton(
+              child: TextButton(
                 child: Text('הצגת תלמידים', style: TextStyle(fontSize: 20.0),),
-                color: Colors.blue[200],
+                // color: Colors.blue[200],
                 onPressed: () {               Navigator.push(
                     context,
                     MaterialPageRoute(builder:( context) {
@@ -49,9 +49,9 @@ class OtherActions extends StatelessWidget {
             ),
             Container(
               margin: EdgeInsets.all(25),
-              child: FlatButton(
+              child: TextButton(
                 child: Text('הצגת חדרים', style: TextStyle(fontSize: 20.0),),
-                color: Colors.blue[700],
+                // color: Colors.blue[700],
                 onPressed: () {               Navigator.push(
                     context,
                     MaterialPageRoute(builder:( context) {
@@ -62,9 +62,9 @@ class OtherActions extends StatelessWidget {
             ),
             Container(
               margin: EdgeInsets.all(25),
-              child: FlatButton(
+              child: TextButton(
                 child: Text('הצגת נושאים', style: TextStyle(fontSize: 20.0),),
-                color: Colors.red[700],
+                // color: Colors.red[700],
                 onPressed: () {               Navigator.push(
                     context,
                     MaterialPageRoute(builder:( context) {

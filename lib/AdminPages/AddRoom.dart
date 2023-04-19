@@ -124,7 +124,7 @@ class _Room extends State<Room> {
           title: const Text("Success!"),
           content: const Text("חדר כיתה נוסף בהצלחה"),
           actions: <Widget>[
-            new FlatButton(
+            new TextButton(
               child: const Text("OK"),
               onPressed: () {
                 Navigator.of(context).pop();
