@@ -138,17 +138,17 @@ class AfterLogin extends StatelessWidget {
               );
             },
           ),
-          SizedBox(height: 25),
-          ListTile(
-            leading: Icon(Icons.add),
-            title: Text('By room'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder:(context) => ScheduleSearchScreen(schedules: schedule,)),
-              );
-            },
-          ),
+          // SizedBox(height: 25),
+          // ListTile(
+          //   leading: Icon(Icons.add),
+          //   title: Text('By room'),
+          //   onTap: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(builder:(context) => ScheduleSearchScreen(schedules: schedule,)),
+          //     );
+          //   },
+          // ),
           SizedBox(height: 25),
           ListTile(
             leading: Icon(Icons.add),
@@ -274,79 +274,3 @@ class Message {
     );
   }
 }
-
-
-
-// Center(child: Column(children: <Widget>[
-//             Container(
-//               margin: const EdgeInsets.all(25),
-//               color: Colors.teal[200],
-//               child: TextButton(
-//                 child: const Text('הוספת נושא', style: TextStyle(fontSize: 20.0),),
-//                 onPressed: () {               Navigator.push(
-//                     context,
-//                     MaterialPageRoute(builder:( context) {
-//                       return Subject();
-//                     },
-//                     ));},
-//               ),
-//             ),
-//             Container(
-//               margin: EdgeInsets.all(25),
-//               color: Colors.teal[600],
-//               child: TextButton(
-//                 child: Text('הוספת מורה', style: TextStyle(fontSize: 20.0),),
-//                 // color: Colors.blueAccent,
-//                 // textColor: Colors.white,
-//                 onPressed: () {               Navigator.push(
-//                     context,
-//                     MaterialPageRoute(builder:( context) {
-//                       return TeacherUser();
-//                     },
-//                     ));},
-//               ),
-//             ),
-//             Container(
-//               margin: EdgeInsets.all(25),
-//               color: Colors.green[400],
-//               child: TextButton(
-//                 child: Text('הוספת תלמיד', style: TextStyle(fontSize: 20.0),),
-//                 // color: Colors.red[200],
-//                 onPressed: () {               Navigator.push(
-//                     context,
-//                     MaterialPageRoute(builder:( context) {
-//                       return Student();
-//                     },
-//                     ));},
-//               ),
-//             ),
-//             Container(
-//               margin: EdgeInsets.all(25),
-//               color: Colors.cyan[200],
-//               child: TextButton(
-//                 child: Text('הוספת כיתה', style: TextStyle(fontSize: 20.0),),
-//                 // color: Colors.orange[400],
-//                 onPressed: () {               Navigator.push(
-//                     context,
-//                     MaterialPageRoute(builder:( context) {
-//                       return Room();
-//                     },
-//                     ));},
-//               ),
-//             ),
-//             Container(
-//               margin: EdgeInsets.all(25),
-//               color: Colors.blueGrey[900],
-//               child: TextButton(
-//                 child: Text('...פעולות נוספות', style: TextStyle(fontSize: 20.0),),
-//                 // color: Colors.blueAccent,
-//                 // textColor: Colors.white,
-//                 onPressed: () {               Navigator.push(
-//                     context,
-//                     MaterialPageRoute(builder:( context) {
-//                       return OtherActions();
-//                     },
-//                     ));},
-//               ),
-//             ),
-//           ]
