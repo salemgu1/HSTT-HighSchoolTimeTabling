@@ -51,17 +51,6 @@ class _TeacherScheduleState extends State<TeacherSchedule>  {
       'end': ''
     },
   };
-  // List<String> _selectedHours = [];
-
-  // void _toggleHour(String hour) {
-  //   setState(() {
-  //     if (_selectedHours.contains(hour)) {
-  //       _selectedHours.remove(hour);
-  //     } else {
-  //       _selectedHours.add(hour);
-  //     }
-  //   });
-  // }
 
   void _toggleHour(String day, String hourType, String hour) {
     setState(() {
@@ -200,7 +189,7 @@ class _TeacherScheduleState extends State<TeacherSchedule>  {
     Widget build(BuildContext context) {
       return Scaffold(
         appBar: AppBar(
-          title: Text('My Schedule'),
+          title: Text('עדכון שעות בהן אני זמין'),
         ),
         body: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -238,23 +227,7 @@ class _TeacherScheduleState extends State<TeacherSchedule>  {
         ),
         floatingActionButton:  FloatingActionButton(
           onPressed: () async {
-            // Save selected hours to database
             saveTeacherHours(_selectedHours);
-            //   ParseUser user = await ParseUser.currentUser();
-            //   if (user != null) {
-            //     ParseObject teacherSchedule = ParseObject('Teacher')
-            //       ..set('teacher', user)
-            //       ..set('hours', _selectedHours);
-            //     try {
-            //       await teacherSchedule.save();
-            //       print('Selected hours saved to database');
-            //     } catch (e) {
-            //       print('Error saving selected hours to database: $e');
-            //     }
-            //   } else {
-            //     print('User not logged in');
-            //   }
-            // },
           },
           child: Icon(Icons.save),
         ),

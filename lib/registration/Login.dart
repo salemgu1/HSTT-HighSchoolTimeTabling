@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:timetabler/HomePage/HomePage.dart';
 import 'package:timetabler/registration/ResetPassword.dart';
 import 'package:timetabler/AdminPages/AfterLogin.dart';
 import '../AdminPages/AddTeacher.dart';
+import 'package:timetabler/registration/Signup.dart';
 
 
 import '../AdminPages/AddRoom.dart';
@@ -11,10 +13,9 @@ import '../MaxSat/SchedulePage.dart';
 import '../teacherPages/TeacherSchedule.dart';
 import '../teacherPages/teacherAfterLoginPage.dart';
 
-
-
-
 class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
+
   @override
   _LoginState createState() => _LoginState();
 }
@@ -27,92 +28,143 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('כניסה'),
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage('./assets/login.png'), fit: BoxFit.cover),
+      ),
+      child: Scaffold(
+          appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
         ),
-        body: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Container(
-                  height: 200,
-                  child: Image.network(
-                      'https://c8.alamy.com/comp/WK44AP/high-school-text-written-on-education-background-of-back-to-school-concept-high-school-concept-banner-on-education-sketch-with-school-supplies-high-WK44AP.jpg'),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                TextField(
-                  controller: controllerUsername,
-                  enabled: !isLoggedIn,
-                  keyboardType: TextInputType.text,
-                  textCapitalization: TextCapitalization.none,
-                  autocorrect: false,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'Username'),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                TextField(
-                  controller: controllerPassword,
-                  enabled: !isLoggedIn,
-                  obscureText: true,
-                  keyboardType: TextInputType.text,
-                  textCapitalization: TextCapitalization.none,
-                  autocorrect: false,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'Password'),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                Container(
-                  height: 50,
-                  child: TextButton(
-                    child: const Text('Login'),
-                    onPressed: isLoggedIn ? null : () => doUserLogin(),
-                  ),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                Container(
-                  height: 50,
-                  child: TextButton(
-                    child: const Text('reset password'),
-                    onPressed:() {                Navigator.push(
-                        context,
-                        MaterialPageRoute(builder:( context) {
-                          return ResetPassword();
-                        },
-                        ));},
-                  ),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                Container(
-                  height: 50,
-                  child: TextButton(
-                    child: const Text('Logout'),
-                    onPressed: !isLoggedIn ? null : () => doUserLogout(),
-                  ),
-                )
-              ],
+        backgroundColor: Colors.transparent,
+        body: Stack(
+          children: [
+            Container(),
+            Container(
+              padding: EdgeInsets.only(left: 35, top: 130),
+              child: Text(
+                'ברוכים הבאים',
+                style: TextStyle(color: Colors.white, fontSize: 33),
+              ),
             ),
-          ),
-        ));
+            SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.5),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 35, right: 35),
+                      child: Column(
+                        children: [
+                          TextField(
+                            controller: controllerUsername,
+                            enabled: !isLoggedIn,
+                            style: TextStyle(color: Colors.black),
+                            decoration: InputDecoration(
+                                fillColor: Colors.grey.shade100,
+                                filled: true,
+                                hintText: "Email",
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )),
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          TextField(
+                            controller: controllerPassword,
+                            enabled: !isLoggedIn,
+                            style: TextStyle(),
+                            obscureText: true,
+                            decoration: InputDecoration(
+                                fillColor: Colors.grey.shade100,
+                                filled: true,
+                                hintText: "Password",
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )),
+                          ),
+                          SizedBox(
+                            height: 40,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'כניסה',
+                                style: TextStyle(
+                                    fontSize: 27, fontWeight: FontWeight.w700),
+                              ),
+                              CircleAvatar(
+                                radius: 30,
+                                backgroundColor: Color(0xff4c505b),
+                                child: IconButton(
+                                    color: Colors.white,
+                                    onPressed:
+                                        isLoggedIn ? null : () => doUserLogin(),
+                                    icon: Icon(
+                                      Icons.arrow_forward,
+                                    )),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 40,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) {
+                                      return Signup();
+                                    },
+                                  ));
+                                },
+                                child: Text(
+                                  'להירשם כאן',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      color: Color(0xff4c505b),
+                                      fontSize: 18),
+                                ),
+                                style: ButtonStyle(),
+                              ),
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.push(context, MaterialPageRoute(
+                                      builder: (context) {
+                                        return ResetPassword();
+                                      },
+                                    ));
+                                  },
+                                  child: Text(
+                                    'שכחתי סיסמה',
+                                    style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      color: Color(0xff4c505b),
+                                      fontSize: 18,
+                                    ),
+                                  )),
+                            ],
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   void showSuccess(String message) {
@@ -156,18 +208,15 @@ class _LoginState extends State<Login> {
   }
 
   void doUserLogin() async {
-
     final username = controllerUsername.text.trim();
     final password = controllerPassword.text.trim();
 
     final user = ParseUser(username, password, null);
 
-
     var response = await user.login();
     List<String> teachers = [];
     List<String> students = [];
     final teathersDB = await getTeacher();
-
 
     for (int i = 0; i < teathersDB.length; i++) {
       teachers.add(teathersDB[i]["id_number"]);
@@ -178,26 +227,33 @@ class _LoginState extends State<Login> {
         Navigator.push(
           // SchedulePage
           // teacherAfterLogin
-          context, MaterialPageRoute(builder: (context) => teacherAfterLogin(),),);
+          context,
+          MaterialPageRoute(
+            builder: (context) => teacherAfterLogin(),
+          ),
+        );
         setState(() {
           isLoggedIn = true;
         });
       } else {
         Navigator.push(
-          context, MaterialPageRoute(builder: (context) => AfterLogin(),),);
+          context,
+          MaterialPageRoute(
+            builder: (context) => AfterLogin(),
+          ),
+        );
         setState(() {
           isLoggedIn = true;
         });
       }
-    }else {
+    } else {
       showError(response.error!.message);
     }
   }
 
-
   Future<List<ParseObject>> getTeacher() async {
     QueryBuilder<ParseObject> queryTeacher =
-    QueryBuilder<ParseObject>(ParseObject('Teacher'));
+        QueryBuilder<ParseObject>(ParseObject('Teacher'));
     final ParseResponse apiResponse = await queryTeacher.query();
 
     if (apiResponse.success && apiResponse.results != null) {

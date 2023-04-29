@@ -15,6 +15,9 @@ class _ResetPasswordState extends State<ResetPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Forget Password'),
+      ),
         body: Center(
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(8),

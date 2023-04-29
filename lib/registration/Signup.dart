@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
+import 'Login.dart';
 
 class Signup extends StatefulWidget {
+  const Signup({Key? key}) : super(key: key);
+
   @override
-  _Signup createState() => _Signup();
+  _SignupState createState() => _SignupState();
 }
 
-class _Signup extends State<Signup> {
+class _SignupState extends State<Signup> {
   final controllerId = TextEditingController();
   final controllerFirstName = TextEditingController();
   final controllerLastName = TextEditingController();
@@ -16,104 +19,225 @@ class _Signup extends State<Signup> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage('assets/register.png'), fit: BoxFit.cover),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
         appBar: AppBar(
-          title: const Text('עמוד הרשמה'),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
         ),
-        body: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Container(
-                  height: 200,
-                  child: Image.network(
-                      'https://c8.alamy.com/comp/WK44AP/high-school-text-written-on-education-background-of-back-to-school-concept-high-school-concept-banner-on-education-sketch-with-school-supplies-high-WK44AP.jpg'),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                TextField(
-                  controller: controllerId,
-                  keyboardType: TextInputType.text,
-                  textCapitalization: TextCapitalization.none,
-                  autocorrect: false,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'ID Number'),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                TextField(
-                  controller: controllerEmail,
-                  keyboardType: TextInputType.emailAddress,
-                  textCapitalization: TextCapitalization.none,
-                  autocorrect: false,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'E-mail'),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                TextField(
-                  controller: controllerFirstName,
-                  keyboardType: TextInputType.emailAddress,
-                  textCapitalization: TextCapitalization.none,
-                  autocorrect: false,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'First Name'),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                TextField(
-                  controller: controllerLastName,
-                  keyboardType: TextInputType.emailAddress,
-                  textCapitalization: TextCapitalization.none,
-                  autocorrect: false,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'Last Name'),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                TextField(
-                  controller: controllerPassword,
-                  obscureText: true,
-                  keyboardType: TextInputType.text,
-                  textCapitalization: TextCapitalization.none,
-                  autocorrect: false,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'Password'),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                Container(
-                  height: 50,
-                  child: TextButton(
-                    child: const Text('הרשמה'),
-                    onPressed: () => doUserRegistration(),
-                  ),
-                )
-              ],
+        body: Stack(
+          children: [
+            Container(
+              padding: EdgeInsets.only(left: 35, top: 30),
+              child: Text(
+                'Create\nAccount',
+                style: TextStyle(color: Colors.white, fontSize: 33),
+              ),
             ),
-          ),
-        ));
+            SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.28),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 35, right: 35),
+                      child: Column(
+                        children: [
+                          TextField(
+                            controller: controllerId,
+                            style: TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                hintText: "ID Number",
+                                hintStyle: TextStyle(color: Colors.white),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )),
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          TextField(
+                            controller: controllerEmail,
+                            style: TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                hintText: "Email",
+                                hintStyle: TextStyle(color: Colors.white),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )),
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          TextField(
+                            controller: controllerFirstName,
+                            style: TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                hintText: "First Name",
+                                hintStyle: TextStyle(color: Colors.white),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )),
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          TextField(
+                            controller: controllerLastName,
+                            style: TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                hintText: "Last Name",
+                                hintStyle: TextStyle(color: Colors.white),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )),
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          TextField(
+                            controller: controllerPassword,
+                            style: TextStyle(color: Colors.white),
+                            obscureText: true,
+                            decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                hintText: "Password",
+                                hintStyle: TextStyle(color: Colors.white),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )),
+                          ),
+                          SizedBox(
+                            height: 40,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Sign Up',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 27,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                              CircleAvatar(
+                                radius: 30,
+                                backgroundColor: Color(0xff4c505b),
+                                child: IconButton(
+                                    color: Colors.white,
+                                    onPressed: () => doUserRegistration(),
+                                    icon: Icon(
+                                      Icons.arrow_forward,
+                                    )),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 40,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return Login();
+                                      },
+                                    ),
+                                  );
+                                },
+                                child: Text(
+                                  'Sign In',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      color: Colors.white,
+                                      fontSize: 18),
+                                ),
+                                style: ButtonStyle(),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   void showSuccess() {
@@ -122,7 +246,8 @@ class _Signup extends State<Signup> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text("Success!"),
-          content: const Text("User was successfully created! Please verify your email before Login"),
+          content: const Text(
+              "User was successfully created! Please verify your email before Login"),
           actions: <Widget>[
             new TextButton(
               child: const Text("OK"),
@@ -163,21 +288,26 @@ class _Signup extends State<Signup> {
     final email = controllerEmail.text.trim();
     final password = controllerPassword.text.trim();
 
-    final user = ParseUser.createUser(id, password, email)..set('FirstName', FirstName)..set('LastName', LastName)..set('isAdmin', true)..set('isTeacher', false)..set('isStudent', false);
+    final user = ParseUser.createUser(id, password, email)
+      ..set('FirstName', FirstName)
+      ..set('LastName', LastName)
+      ..set('isAdmin', true)
+      ..set('isTeacher', false)
+      ..set('isStudent', false);
 
     var response = await user.signUp();
 
     if (response.success) {
       showSuccess();
       //   Message.showSuccess(
-    //       context: context,
-    //       message: 'User was successfully created! Please verify your email before Login',
-    //       onPressed: () async {
-    //         Navigator.pop(context);
-    //       });
+      //       context: context,
+      //       message: 'User was successfully created! Please verify your email before Login',
+      //       onPressed: () async {
+      //         Navigator.pop(context);
+      //       });
     } else {
       showError("Error1111");
-    //   Message.showError(context: context, message: response.error!.message);
+      //   Message.showError(context: context, message: response.error!.message);
     }
   }
 }

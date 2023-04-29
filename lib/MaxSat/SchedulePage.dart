@@ -15,11 +15,11 @@ class Classroom {
   Classroom(this.name, this.capacity);
 }
 
-class Student {
+class StudentSchedule {
   String name;
   List<String> subjects; // the list of subjects the student wants to study
   List<int> exhaustedHours; // the list of hours the student is exhausted and cannot attend class
-  Student(this.name, this.subjects, this.exhaustedHours);
+  StudentSchedule(this.name, this.subjects, this.exhaustedHours);
 }
 
 class Schedule {
@@ -31,7 +31,7 @@ class Schedule {
   Schedule(this.teacher, this.classroom, this.subject, this.day, this.hour);
 }
 
-List<Schedule> buildSchedule(List<Teacher> teachers, List<Classroom> classrooms, List<Student> students) {
+List<Schedule> buildSchedule(List<Teacher> teachers, List<Classroom> classrooms, List<StudentSchedule> students) {
   List<Schedule> schedule = [];
   List<String> subjects = []; // list of all unique subjects
   teachers.forEach((teacher) => subjects.addAll(teacher.subjects));
@@ -55,7 +55,7 @@ List<Schedule> buildSchedule(List<Teacher> teachers, List<Classroom> classrooms,
   return schedule;
 }
 
-int getNumberOfStudentsInClass(String subject, List<Student> students) {
+int getNumberOfStudentsInClass(String subject, List<StudentSchedule> students) {
   int count = 0;
   students.forEach((student) => count += student.subjects.contains(subject) ? 1 : 0);
   return count;
@@ -142,12 +142,12 @@ class ScheduleScreen extends StatelessWidget {
 
 List<Teacher> teachers = [
   Teacher("1234", ["Science"], [1, 2, 3, 4, 5, 6, 7, 8]),
-  Teacher("salem2", ["English"], [1, 2, 3, 4, 5, 6, 7, 8]),
-  Teacher("salem3", [ "Social Studies"], [1, 2, 3, 4, 5, 6, 7, 8]),
-  Teacher("salem4", ["math"], [1, 2, 3, 4, 5, 6, 7, 8]),
-  Teacher("salem5", ["arabic"], [1, 2, 3, 4, 5, 6, 7, 8]),
-  Teacher("salem6", ["Hebrew"], [1, 2, 3, 4, 5, 6, 7, 8]),
-  Teacher("salem7", ["history"], [1, 2, 3, 4, 5, 6, 7, 8])
+  Teacher("salem", ["English"], [1, 2, 3, 4, 5, 6, 7, 8]),
+  Teacher("samer", [ "Social Studies"], [1, 2, 3, 4, 5, 6, 7, 8]),
+  Teacher("yochai", ["math"], [1, 2, 3, 4, 5, 6, 7, 8]),
+  Teacher("salem1", ["arabic"], [1, 2, 3, 4, 5, 6, 7, 8]),
+  Teacher("samer1", ["Hebrew"], [1, 2, 3, 4, 5, 6, 7, 8]),
+  // Teacher("salem7", ["history"], [1, 2, 3, 4, 5, 6, 7, 8])
 ];
 
 List<Classroom> classrooms = [
@@ -161,12 +161,12 @@ List<Classroom> classrooms = [
 ];
 
 
-List<Student> students = [
-  Student("salem", ["arabic", "English"], [1, 2]),
-  Student("Alice", ["Hebrew", "English"], [1, 2]),
-  Student("Bob", ["Science", "Social Studies"], [5, 6]),
-  Student("Charlie", ["math", "Social Studies"], [3, 4]),
-  Student("David", ["English", "Science"], [7, 8]),
+List<StudentSchedule> students = [
+  StudentSchedule("salem", ["arabic", "English"], [1, 2]),
+  StudentSchedule("Alice", ["Hebrew", "English"], [1, 2]),
+  StudentSchedule("Bob", ["Science", "Social Studies"], [5, 6]),
+  StudentSchedule("Charlie", ["math", "Social Studies"], [3, 4]),
+  StudentSchedule("David", ["English", "Science"], [7, 8]),
 
 
 ];
@@ -178,7 +178,7 @@ Set<Schedule> uniqueSchedule = Set<Schedule>.from(schedule);
 List<Schedule> result = List<Schedule>.from(uniqueSchedule);
 
 
-getschedule(teacherName){
+getSchedule(teacherName){
   List<Schedule> sch = [];
   for(Schedule s in result){
     if(s.teacher.name==teacherName){

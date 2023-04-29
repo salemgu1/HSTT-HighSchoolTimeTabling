@@ -66,134 +66,191 @@ class TeacherDataView extends StatelessWidget {
   final String id;
   final String email;
 
-  const TeacherDataView({
+   TeacherDataView({
     required this.username,
     required this.id,
     required this.email,
   });
 
+    ParseUser? currentUser;
+
+
   @override
 Widget build(BuildContext context) {
-  return Container(
-    margin: EdgeInsets.all(16.0),
-    padding: EdgeInsets.all(16.0),
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(10.0),
-      color: Colors.white,
-      boxShadow: [
-        BoxShadow(
-          color: Colors.grey.withOpacity(0.5),
-          spreadRadius: 2,
-          blurRadius: 5,
-          offset: Offset(0, 3),
-        ),
-      ],
+      void doUserLogout() async {
+      var response = await currentUser!.logout();
+      if (response.success) {
+        Message.showSuccess(
+            context: context,
+            message: 'User was successfully logout!',
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const Login()),
+                    (Route<dynamic> route) => false,
+              );
+            });
+      } else {
+        Message.showError(context: context, message: response.error!.message);
+      }
+    }
+
+  return Scaffold(
+    appBar: AppBar(
+      title: Text('פרטי המורה'),
     ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'ID',
-          style: TextStyle(
-            color: Colors.grey,
-            fontWeight: FontWeight.bold,
-            fontSize: 16.0,
-          ),
-        ),
-        const SizedBox(height: 10.0),
-        Text(
-          id,
-          style: const TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 20.0,
-          ),
-        ),
-        const SizedBox(height: 20.0),
-        const Text(
-          'Email',
-          style: TextStyle(
-            color: Colors.grey,
-            fontWeight: FontWeight.bold,
-            fontSize: 16.0,
-          ),
-        ),
-        const SizedBox(height: 10.0),
-        Text(
-          email,
-          style: const TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 20.0,
-          ),
-        ),
-        const SizedBox(height: 40.0),
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            primary: Colors.blue,
-            onPrimary: Colors.white,
-            padding: const EdgeInsets.symmetric(
-              horizontal: 50.0,
-              vertical: 16.0,
-            ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25.0),
+    drawer: Drawer(
+            child: ListView(
+              // Important: Remove any padding from the ListView.
+              padding: EdgeInsets.zero,
+              children: [
+                const DrawerHeader(
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                  ),
+                  child: Text('אפשרויות'),
+                ),
+                ListTile(
+                  leading: const Icon(
+                    Icons.logout,
+                  ),
+                  title: const Text('יציאה'),
+                  onTap: () {
+                    doUserLogout();
+                    Navigator.of(context).push(MaterialPageRoute(builder:(context)=>Login()));
+                  },
+                ),
+              ],
             ),
           ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => TeacherSchedule()),
-            );
-          },
-          child: const Text(
-            'Update Available Hours',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16.0,
+    body: SingleChildScrollView(
+      child: Container(
+        margin: EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10.0),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: Offset(0, 3),
             ),
-          ),
+          ],
         ),
-        const SizedBox(height: 20.0),
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            primary: Colors.blue,
-            onPrimary: Colors.white,
-            padding: const EdgeInsets.symmetric(
-              horizontal: 50.0,
-              vertical: 16.0,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ListTile(
+              title: Text(
+                'ID',
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16.0,
+                ),
+              ),
+              subtitle: Text(
+                id,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.0,
+                ),
+              ),
             ),
-            shape: RoundedRectangleBorder(
+            const SizedBox(height: 20.0),
+            ListTile(
+              title: Text(
+                'Email',
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16.0,
+                ),
+              ),
+              subtitle: Text(
+                email,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.0,
+                ),
+              ),
+            ),
+            const SizedBox(height: 40.0),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blue,
+                onPrimary: Colors.white,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 50.0,
+                  vertical: 16.0,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                ),
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => TeacherSchedule()),
+                );
+              },
+              child: const Text(
+                'עדכון שעות בהן אני זמין',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16.0,
+                ),
+              ),
+            ),
+            const SizedBox(height: 20.0),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blue,
+                onPrimary: Colors.white,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 50.0,
+                  vertical: 16.0,
+                ),
+                shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(25.0),
             ),
           ),
           onPressed: () async {
             String userName = await getCurrentUserID();
-            print(userName);
             Navigator.push(
               context,
-              MaterialPageRoute(
-                builder: (context) => ListView.builder(
-                  itemCount: getschedule(userName).length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      child: ListTile(
-                        title: Text(
-                          'Teacher: ${getschedule(userName)[index].teacher.name}',
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        subtitle: Text(
-                          'Subject: ${getschedule(userName)[index].subject}\nClassroom: ${getschedule(userName)[index].classroom.name}\nDay: ${getschedule(userName)[index].day}\nHour: ${getschedule(userName)[index].hour}:00 to ${getschedule(userName)[index].hour+1}:00',
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
+MaterialPageRoute(
+  builder: (context) => Scaffold(
+    appBar: AppBar(
+      title: const Text('מערכת שעות'),
+    ),
+    body: ListView.builder(
+      itemCount: getSchedule(userName).length,
+      itemBuilder: (context, index) {
+        return Card(
+          child: ListTile(
+            title: Text(
+              'Teacher: ${getSchedule(userName)[index].teacher.name}',
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            subtitle: Text(
+              'Subject: ${getSchedule(userName)[index].subject}\nClassroom: ${getSchedule(userName)[index].classroom.name}\nDay: ${getSchedule(userName)[index].day}\nHour: ${getSchedule(userName)[index].hour}:00 to ${getSchedule(userName)[index].hour+1}:00',
+            ),
+          ),
+        );
+      },
+    ),
+  ),
+),
+
             );
           },
           child: const Text(
-            'View Schedule',
+            'מערכת שעות',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16.0,
@@ -201,6 +258,8 @@ Widget build(BuildContext context) {
           ),
         ),
       ],
+    )
+  )
     )
   );
 }
