@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import 'package:timetabler/AdminPages/updateSubjects.dart';
 
 
 class Subjects extends StatefulWidget {
@@ -60,6 +61,19 @@ class _SubjectsState extends State<Subjects> {
                                   trailing: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
+                                      IconButton(
+                                        icon: Icon(
+                                          Icons.edit,
+                                          color: Colors.blue,
+                                        ),
+                                    onPressed: () { Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder:( context) {
+                                    return UpdateSubjectButton(subjectId: snapshot.data![index]['objectId'],);
+                                    },
+                                    ));},
+
+                                      ),
                                       IconButton(
                                         icon: Icon(
                                           Icons.delete,

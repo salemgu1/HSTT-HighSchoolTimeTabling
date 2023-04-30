@@ -15,6 +15,11 @@ class UpdateRoomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      appBar: AppBar(
+        title: Text('עדכון חדר'),
+        backgroundColor: Colors.blueAccent,
+        centerTitle: true,
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
