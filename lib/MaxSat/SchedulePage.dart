@@ -39,7 +39,7 @@ List<Schedule> buildSchedule(List<Teacher> teachers, List<Classroom> classrooms,
   subjects = subjects.toSet().toList(); // remove duplicates
 
   for (int d = 1; d <= 5; d++) { // loop through each day
-    for (int h = 1; h <= 8; h++) { // loop through each hour
+    for (int h = 8; h <= 14; h++) { // loop through each hour
       for (String subject in subjects) { // loop through each subject
         List<Teacher> availableTeachers = teachers.where((teacher) => teacher.subjects.contains(subject) && teacher.availableHours.contains(h)).toList();
         List<Classroom> availableClassrooms = classrooms.where((classroom) => classroom.capacity >= getNumberOfStudentsInClass(subject, students) && !isClassroomBooked(classroom.name, schedule, d, h)).toList();
@@ -141,12 +141,12 @@ class ScheduleScreen extends StatelessWidget {
 
 
 List<Teacher> teachers = [
-  Teacher("1234", ["Science"], [1, 2, 3, 4, 5, 6, 7, 8]),
-  Teacher("salem", ["English"], [1, 2, 3, 4, 5, 6, 7, 8]),
-  Teacher("samer", [ "Social Studies"], [1, 2, 3, 4, 5, 6, 7, 8]),
-  Teacher("yochai", ["math"], [1, 2, 3, 4, 5, 6, 7, 8]),
-  Teacher("salem1", ["arabic"], [1, 2, 3, 4, 5, 6, 7, 8]),
-  Teacher("samer1", ["Hebrew"], [1, 2, 3, 4, 5, 6, 7, 8]),
+  Teacher("1234", ["Science"], [8,9,10,11,13,14]),
+  Teacher("salem", ["English"], [8,9,10,11,13,14]),
+  Teacher("samer", [ "Social Studies"], [8,9,10,11,13,14]),
+  Teacher("yochai", ["math"], [8,9,10,11,13,14]),
+  // Teacher("ahmad", ["arabic"], [8,9,10,11,13,14]),
+  Teacher("moshi", ["Hebrew"], [8,9,10,11,13,14]),
   // Teacher("salem7", ["history"], [1, 2, 3, 4, 5, 6, 7, 8])
 ];
 

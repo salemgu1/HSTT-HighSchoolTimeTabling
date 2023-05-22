@@ -75,6 +75,13 @@ class TeacherDataView extends StatelessWidget {
     ParseUser? currentUser;
 
 
+  Map<int, String> daysHash = {
+    1: 'Sunday',
+    2: 'Monday',
+    3: 'Tuesday',
+    4: 'Wednesday',
+    5: 'Thursday',
+  };
   @override
 Widget build(BuildContext context) {
       void doUserLogout() async {
@@ -228,22 +235,50 @@ MaterialPageRoute(
     appBar: AppBar(
       title: const Text('מערכת שעות'),
     ),
-    body: ListView.builder(
-      itemCount: getSchedule(userName).length,
-      itemBuilder: (context, index) {
-        return Card(
-          child: ListTile(
-            title: Text(
-              'Teacher: ${getSchedule(userName)[index].teacher.name}',
+      body: ListView.builder(
+  itemCount: schedule.length,
+  itemBuilder: (context, index) {
+    final item = getSchedule(userName)[index];
+
+    return Card(
+      child: ListTile(
+        title: Row(
+          children: [
+            Icon(Icons.person),
+            const SizedBox(width: 8),
+            Text(
+              item.teacher.name,
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
-            subtitle: Text(
-              'Subject: ${getSchedule(userName)[index].subject}\nClassroom: ${getSchedule(userName)[index].classroom.name}\nDay: ${getSchedule(userName)[index].day}\nHour: ${getSchedule(userName)[index].hour}:00 to ${getSchedule(userName)[index].hour+1}:00',
+          ],
+        ),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.location_on),
+                const SizedBox(width: 8),
+                Text('${item.classroom.name}'),
+              ],
             ),
-          ),
-        );
-      },
-    ),
+            Row(
+              children: [
+                Icon(Icons.calendar_today),
+                const SizedBox(width: 8),
+                Text('${daysHash[item.day]}'),
+                const SizedBox(width: 8),
+                Icon(Icons.access_time),
+                const SizedBox(width: 8),
+                Text('${item.hour}:00 - ${item.hour + 1}:00'),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  },
+),
   ),
 ),
 

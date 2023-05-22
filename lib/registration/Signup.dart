@@ -35,7 +35,7 @@ class _SignupState extends State<Signup> {
             Container(
               padding: EdgeInsets.only(left: 35, top: 30),
               child: Text(
-                'Create\nAccount',
+                'יצירת חשבון חדש',
                 style: TextStyle(color: Colors.white, fontSize: 33),
               ),
             ),
@@ -66,7 +66,7 @@ class _SignupState extends State<Signup> {
                                     color: Colors.black,
                                   ),
                                 ),
-                                hintText: "ID Number",
+                                hintText: "מספר מזהה",
                                 hintStyle: TextStyle(color: Colors.white),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -116,7 +116,7 @@ class _SignupState extends State<Signup> {
                                     color: Colors.black,
                                   ),
                                 ),
-                                hintText: "First Name",
+                                hintText: "שם פרטי",
                                 hintStyle: TextStyle(color: Colors.white),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -141,7 +141,7 @@ class _SignupState extends State<Signup> {
                                     color: Colors.black,
                                   ),
                                 ),
-                                hintText: "Last Name",
+                                hintText: "שם משפחה",
                                 hintStyle: TextStyle(color: Colors.white),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -167,7 +167,7 @@ class _SignupState extends State<Signup> {
                                     color: Colors.black,
                                   ),
                                 ),
-                                hintText: "Password",
+                                hintText: "סיסמה",
                                 hintStyle: TextStyle(color: Colors.white),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -180,7 +180,7 @@ class _SignupState extends State<Signup> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Sign Up',
+                                'הרשמה',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 27,
@@ -216,7 +216,7 @@ class _SignupState extends State<Signup> {
                                   );
                                 },
                                 child: Text(
-                                  'Sign In',
+                                  'להתחבר כאן',
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                       decoration: TextDecoration.underline,
