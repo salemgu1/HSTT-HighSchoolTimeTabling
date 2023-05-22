@@ -6,6 +6,8 @@ import 'package:timetabler/AdminPages/updateTeacher.dart';
 class Teachers extends StatefulWidget {
   @override
   _TeachersState createState() => _TeachersState();
+  bool isDarkMode = false;
+
 }
 
 class _TeachersState extends State<Teachers> {

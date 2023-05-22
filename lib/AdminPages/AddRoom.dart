@@ -61,7 +61,7 @@ class _AddStudent extends State<Room> {
             Container(
               padding: EdgeInsets.only(left: 110, top: 50),
               child: Text(
-                'הוספת תלמיד',
+                'הוספת כיתה',
                 style: TextStyle(color: Colors.black, fontSize: 33),
               ),
             ),

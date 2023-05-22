@@ -5,19 +5,17 @@ import 'package:timetabler/teacherPages/TeacherSchedule.dart';
 
 import '../MaxSat/SchedulePage.dart';
 
-
 Future<String> getCurrentUserID() async {
   List<String> data = [];
   final currentUser = await ParseUser.currentUser();
-    QueryBuilder<ParseObject> queryTeacher =
-    QueryBuilder<ParseObject>(ParseObject('Teacher'))
-      ..whereEqualTo('id_number', currentUser.username);
-    final ParseResponse apiResponse = await queryTeacher.query();
-    final teacherObject = apiResponse.results![0];
-    print(teacherObject.get<String>('id_number'));
-    return teacherObject.get<String>('id_number');
+  QueryBuilder<ParseObject> queryTeacher =
+      QueryBuilder<ParseObject>(ParseObject('Teacher'))
+        ..whereEqualTo('id_number', currentUser.username);
+  final ParseResponse apiResponse = await queryTeacher.query();
+  final teacherObject = apiResponse.results![0];
+  print(teacherObject.get<String>('id_number'));
+  return teacherObject.get<String>('id_number');
 }
-
 
 class teacherAfterLogin extends StatelessWidget {
   Future<List<String>> getTeacherData() async {
@@ -66,14 +64,13 @@ class TeacherDataView extends StatelessWidget {
   final String id;
   final String email;
 
-   TeacherDataView({
+  TeacherDataView({
     required this.username,
     required this.id,
     required this.email,
   });
 
-    ParseUser? currentUser;
-
+  ParseUser? currentUser;
 
   Map<int, String> daysHash = {
     1: 'Sunday',
@@ -83,8 +80,8 @@ class TeacherDataView extends StatelessWidget {
     5: 'Thursday',
   };
   @override
-Widget build(BuildContext context) {
-      void doUserLogout() async {
+  Widget build(BuildContext context) {
+    void doUserLogout() async {
       var response = await currentUser!.logout();
       if (response.success) {
         Message.showSuccess(
@@ -94,7 +91,7 @@ Widget build(BuildContext context) {
               Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(builder: (context) => const Login()),
-                    (Route<dynamic> route) => false,
+                (Route<dynamic> route) => false,
               );
             });
       } else {
@@ -102,203 +99,203 @@ Widget build(BuildContext context) {
       }
     }
 
-  return Scaffold(
-    appBar: AppBar(
-      title: Text('פרטי המורה'),
-    ),
-    drawer: Drawer(
-            child: ListView(
-              // Important: Remove any padding from the ListView.
-              padding: EdgeInsets.zero,
-              children: [
-                const DrawerHeader(
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                  ),
-                  child: Text('אפשרויות'),
-                ),
-                ListTile(
-                  leading: const Icon(
-                    Icons.logout,
-                  ),
-                  title: const Text('יציאה'),
-                  onTap: () {
-                    doUserLogout();
-                    Navigator.of(context).push(MaterialPageRoute(builder:(context)=>Login()));
-                  },
-                ),
-              ],
-            ),
-          ),
-    body: SingleChildScrollView(
-      child: Container(
-        margin: EdgeInsets.all(16.0),
-        padding: EdgeInsets.all(16.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 2,
-              blurRadius: 5,
-              offset: Offset(0, 3),
-            ),
-          ],
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('פרטי המורה'),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ListTile(
-              title: Text(
-                'ID',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16.0,
+        drawer: Drawer(
+          child: ListView(
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: [
+              const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
                 ),
+                child: Text('אפשרויות'),
               ),
-              subtitle: Text(
-                id,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20.0,
+              ListTile(
+                leading: const Icon(
+                  Icons.logout,
                 ),
+                title: const Text('יציאה'),
+                onTap: () {
+                  doUserLogout();
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => Login()));
+                },
               ),
-            ),
-            const SizedBox(height: 20.0),
-            ListTile(
-              title: Text(
-                'Email',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16.0,
-                ),
-              ),
-              subtitle: Text(
-                email,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20.0,
-                ),
-              ),
-            ),
-            const SizedBox(height: 40.0),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.blue,
-                onPrimary: Colors.white,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 50.0,
-                  vertical: 16.0,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25.0),
-                ),
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => TeacherSchedule()),
-                );
-              },
-              child: const Text(
-                'עדכון שעות בהן אני זמין',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16.0,
-                ),
-              ),
-            ),
-            const SizedBox(height: 20.0),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.blue,
-                onPrimary: Colors.white,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 50.0,
-                  vertical: 16.0,
-                ),
-                shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25.0),
-            ),
-          ),
-          onPressed: () async {
-            String userName = await getCurrentUserID();
-            Navigator.push(
-              context,
-MaterialPageRoute(
-  builder: (context) => Scaffold(
-    appBar: AppBar(
-      title: const Text('מערכת שעות'),
-    ),
-      body: ListView.builder(
-  itemCount: schedule.length,
-  itemBuilder: (context, index) {
-    final item = getSchedule(userName)[index];
-
-    return Card(
-      child: ListTile(
-        title: Row(
-          children: [
-            Icon(Icons.person),
-            const SizedBox(width: 8),
-            Text(
-              item.teacher.name,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Icon(Icons.location_on),
-                const SizedBox(width: 8),
-                Text('${item.classroom.name}'),
-              ],
-            ),
-            Row(
-              children: [
-                Icon(Icons.calendar_today),
-                const SizedBox(width: 8),
-                Text('${daysHash[item.day]}'),
-                const SizedBox(width: 8),
-                Icon(Icons.access_time),
-                const SizedBox(width: 8),
-                Text('${item.hour}:00 - ${item.hour + 1}:00'),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  },
-),
-  ),
-),
-
-            );
-          },
-          child: const Text(
-            'מערכת שעות',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16.0,
-            ),
+            ],
           ),
         ),
-      ],
-    )
-  )
-    )
-  );
-}
+        body: SingleChildScrollView(
+            child: Container(
+                margin: EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 2,
+                      blurRadius: 5,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ListTile(
+                      title: Text(
+                        'ID',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0,
+                        ),
+                      ),
+                      subtitle: Text(
+                        id,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20.0),
+                    ListTile(
+                      title: Text(
+                        'Email',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0,
+                        ),
+                      ),
+                      subtitle: Text(
+                        email,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 40.0),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.blue,
+                        onPrimary: Colors.white,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 50.0,
+                          vertical: 16.0,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25.0),
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => TeacherSchedule()),
+                        );
+                      },
+                      child: const Text(
+                        'עדכון שעות בהן אני זמין',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20.0),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.blue,
+                        onPrimary: Colors.white,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 50.0,
+                          vertical: 16.0,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25.0),
+                        ),
+                      ),
+                      onPressed: () async {
+                        String userName = await getCurrentUserID();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Scaffold(
+                              appBar: AppBar(
+                                title: const Text('מערכת שעות'),
+                              ),
+                              body: ListView.builder(
+                                itemCount: getSchedule(userName).length,
+                                itemBuilder: (context, index) {
+                                  final item = getSchedule(userName)[index];
 
+                                  return Card(
+                                    child: ListTile(
+                                      title: Row(
+                                        children: [
+                                          Icon(Icons.person),
+                                          const SizedBox(width: 8),
+                                          Text(
+                                            item.teacher.name,
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
+                                      ),
+                                      subtitle: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Icon(Icons.location_on),
+                                              const SizedBox(width: 8),
+                                              Text('${item.classroom.name}'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Icon(Icons.calendar_today),
+                                              const SizedBox(width: 8),
+                                              Text('${daysHash[item.day]}'),
+                                              const SizedBox(width: 8),
+                                              Icon(Icons.access_time),
+                                              const SizedBox(width: 8),
+                                              Text(
+                                                  '${item.hour}:00 - ${item.hour + 1}:00'),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        'מערכת שעות',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0,
+                        ),
+                      ),
+                    ),
+                  ],
+                ))));
+  }
 }
 
 class Message {

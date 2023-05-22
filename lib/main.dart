@@ -16,29 +16,24 @@ Future<void> main() async {
   await Parse().initialize(keyApplicationId, keyParseServerUrl,
       clientKey: keyClientKey, autoSendSessionId: true);
 
-
   runApp(
     ChangeNotifierProvider(
       create: (context) => ThemeProvider(),
-      child: MaterialApp(home :MyApp()),
+      child: MyApp(),
     ),
   );
-  // runApp(MaterialApp(
-  //     home: MyApp()
-  // ));
 }
 
-class App extends StatelessWidget {
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return MaterialApp(
-      title: 'Flutter SignUp',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      // home: Signup(),
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+      home: HomePage(),
     );
   }
 }
+
