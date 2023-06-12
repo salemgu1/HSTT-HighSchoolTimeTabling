@@ -139,16 +139,29 @@ class _SubjectState extends State<Subject> {
   }
 
   Future<void> saveSubject(String title) async {
-    print("asdasdasdas");
+    String schoolId = await getSchoolIdFromCurrentUser();
+    print(schoolId);
     final subject = ParseObject('Subject')
       ..set('title', title)
-      ..set('done', false);
+      ..set('done', false)
+      ..set('schooId', schoolId);
     await subject.save();
   }
 
+  Future<String> getSchoolIdFromCurrentUser() async {
+  final ParseUser currentUser = await ParseUser.currentUser();
+  if (currentUser != null) {
+    final String schoolId = currentUser.get('SchoolId');
+    return schoolId;
+  } else {
+    throw Exception('No current user found.');
+  }
+}
   Future<List<ParseObject>> getSubject() async {
+    String schoolId = await getSchoolIdFromCurrentUser();
     QueryBuilder<ParseObject> querySubject =
         QueryBuilder<ParseObject>(ParseObject('Subject'));
+    querySubject.whereEqualTo('schooId', schoolId); // Add this line to filter by school ID
     final ParseResponse apiResponse = await querySubject.query();
 
     if (apiResponse.success && apiResponse.results != null) {

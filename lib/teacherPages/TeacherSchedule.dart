@@ -22,12 +22,13 @@ class _TeacherScheduleState extends State<TeacherSchedule>  {
 
   List<String> listhours = ['8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '1:00 PM', '2:00 PM'];
   final Map<String, List<String>> _availableHours = {
-    'Sunday': ['8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '1:00 PM', '2:00 PM'],
-    'Monday': ['8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '1:00 PM', '2:00 PM'],
-    'Tuesday': ['8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '1:00 PM', '2:00 PM'],
-    'Wednesday': ['8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '1:00 PM', '2:00 PM'],
-    'Thursday': ['8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '1:00 PM', '2:00 PM'],
+    'Sunday': ['08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM','13:00 PM', '14:00 PM'],
+    'Monday': ['08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM','13:00 PM', '14:00 PM'],
+    'Tuesday': ['08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM','13:00 PM', '14:00 PM'],
+    'Wednesday': ['08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM','13:00 PM', '14:00 PM'],
+    'Thursday': ['08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM','13:00 PM', '14:00 PM'],
   };
+  
 
   final Map<String, Map<String, String>> _selectedAvailableHours = {
     'Monday': {
@@ -140,8 +141,7 @@ class _TeacherScheduleState extends State<TeacherSchedule>  {
         final subject = teacherObject.get<String>('Subject');
         print(subject);
         if(subject == "math"){
-          print( teacherObject.get<String>('Subject'));
-          print(teacherObject.get<String>('id_number'));
+
         }
 
       }
@@ -155,31 +155,94 @@ class _TeacherScheduleState extends State<TeacherSchedule>  {
     }
   }
 
-  Future<void> saveTeacherHours(Map<String, Map<String, String>>  selectedHours)async {
-    final currentUser = await ParseUser.currentUser();
-    print(selectedHours);
-    if (currentUser != null) {
-      QueryBuilder<ParseObject> queryTeacher = QueryBuilder<ParseObject>(ParseObject('Teacher'))..whereEqualTo('id_number', currentUser.username);
-      final ParseResponse apiResponse = await queryTeacher.query();
+Future<void> saveTeacherHours(Map<String, Map<String, String>> selectedHours) async {
+  final currentUser = await ParseUser.currentUser();
+  if (currentUser != null) {
+    QueryBuilder<ParseObject> queryTeacher =
+        QueryBuilder<ParseObject>(ParseObject('Teacher'))
+          ..whereEqualTo('id_number', currentUser.username);
+    final ParseResponse apiResponse = await queryTeacher.query();
+    Map<String, Map<String, String>> prevAvailableHours = {};
 
-      if (apiResponse.success && apiResponse.results != null && apiResponse.results!.isNotEmpty) {
-        final teacherObject = apiResponse.results![0];
-        teacherObject.set<Map<String, Map<String, String>>>(
-            'available_hours', selectedHours);
-        final updatedResponse = await teacherObject.save();
 
-        if (updatedResponse.success) {
-          print('Teacher hours saved successfully.');
-        } else {
-          print('Error saving teacher hours: ${updatedResponse.error!.message}');
+    if (apiResponse.success &&
+        apiResponse.results != null &&
+        apiResponse.results!.isNotEmpty) {
+      final teacherObject = apiResponse.results![0];
+
+      Map<String, List<int>> hours = {
+      'Sunday': [],
+      'Monday': [],
+      'Tuesday': [],
+      'Wednesday': [],
+      'Thursday': [],
+      };
+
+      List<String> days = ["Sunday","Monday","Tuesday","Wednesday","Thursday"];
+      if(teacherObject.get('available_hours')!=null){
+              for (var i = 0; i < days.length; i++) {
+        if(teacherObject.get('available_hours')[days[i]]==null ){
+          if(selectedHours[days[i]]!=null){
+            prevAvailableHours[days[i]] = selectedHours[days[i]]!;
+          }else{
+            teacherObject.get('available_hours')[days[i]] = {"start": "08:00 AM", " end": "14:00 AM"};
+          }
+        }else if(teacherObject.get('available_hours')[days[i]]!=null && selectedHours[days[i]]!=null &&teacherObject.get('available_hours')[days[i]]!=selectedHours[days[i]] ){
+          prevAvailableHours[days[i]] = selectedHours[days[i]]!;
         }
+        else if( teacherObject.get('available_hours')[days[i]]["start"]!=null && teacherObject.get('available_hours')[days[i]]["end"]!=null){
+          Map<String,String> hoursRange = {"start": teacherObject.get('available_hours')[days[i]]["start"], "end": teacherObject.get('available_hours')[days[i]]["end"]};
+          prevAvailableHours[days[i]] = hoursRange;
+        }
+        else if(teacherObject.get('available_hours')[days[i]]["start"]!=null && teacherObject.get('available_hours')[days[i]]["end"]==null && prevAvailableHours[days[i]]!=null){
+          print(prevAvailableHours[days[i]]);
+          print("prevAvailableHours[days[i]]");
+          prevAvailableHours[days[i]]!["end"] = "14:00 AM";
+        }
+        else if(teacherObject.get('available_hours')[days[i]]["end"]!=null && teacherObject.get('available_hours')[days[i]]["start"]==null){
+          prevAvailableHours[days[i]]!["start"] = "08:00 AM";
+        }
+      }
+      }
+
+      for (var i = 0; i < days.length; i++) {
+        if(selectedHours[days[i]]==null){
+          continue;
+        }else{
+          prevAvailableHours[days[i]] = selectedHours[days[i]]!;
+        }
+      }
+      for (var i = 0; i < days.length; i++) {
+        if(selectedHours[days[i]]!=null){
+          if(selectedHours[days[i]]!["start"]==null){
+          prevAvailableHours[days[i]]!["start"] = "08:00 AM";
+        }
+        if(selectedHours[days[i]]!["end"]==null){
+          prevAvailableHours[days[i]]!["end"] = "14:00 AM";
+        }
+        }
+      }
+      teacherObject.set<Map<String, Map<String, String>>>(
+          'available_hours', prevAvailableHours);
+
+      final updatedResponse = await teacherObject.save();
+      // print(teacherObject.get('available_hours'));
+      // print(teacherObject.get('available_hours')["Sunday"]["start"]);
+
+
+      if (updatedResponse.success) {
+        print('Teacher hours saved successfully.');
       } else {
-        print('Error getting teacher object: ${apiResponse.error!.message}');
+        print('Error saving teacher hours: ${updatedResponse.error!.message}');
       }
     } else {
-      print('There is no current user.');
+      print('Error getting teacher object: ${apiResponse.error!.message}');
     }
+  } else {
+    print('There is no current user.');
   }
+}
+
 
   void _saveTeacherHours() {
     // Save selected hours to database

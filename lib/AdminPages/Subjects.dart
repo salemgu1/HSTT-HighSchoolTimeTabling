@@ -103,9 +103,22 @@ class _SubjectsState extends State<Subjects> {
     );
   }
 
+
+  Future<String> getSchoolIdFromCurrentUser() async {
+  final ParseUser currentUser = await ParseUser.currentUser();
+  if (currentUser != null) {
+    final String schoolId = currentUser.get('SchoolId');
+    return schoolId;
+  } else {
+    throw Exception('No current user found.');
+  }
+}
+
   Future<List<ParseObject>> getSubjects() async {
+    String schoolId = await getSchoolIdFromCurrentUser();
     QueryBuilder<ParseObject> querySubject =
-    QueryBuilder<ParseObject>(ParseObject('Subject'));
+        QueryBuilder<ParseObject>(ParseObject('Subject'));
+    querySubject.whereEqualTo('schooId', schoolId); // Add this line to filter by school ID
     final ParseResponse apiResponse = await querySubject.query();
 
     if (apiResponse.success && apiResponse.results != null) {
@@ -116,7 +129,29 @@ class _SubjectsState extends State<Subjects> {
   }
 
 
-  Future<void> deleteSubject(String id) async {
+  Future<void> deleteSubject(String objectId) async {
+    final QueryBuilder<ParseObject> querySubject =
+        QueryBuilder<ParseObject>(ParseObject('Subject'));
+    querySubject.whereEqualTo('objectId', objectId);
+
+    final ParseResponse apiResponse = await querySubject.query();
+
+    if (apiResponse.success && apiResponse.results != null) {
+      print("ASdasdsad");
+
+      final List<ParseObject> subjects =
+          apiResponse.results as List<ParseObject>;
+
+      if (subjects.isNotEmpty) {
+        final ParseObject subject = subjects.first;
+        await subject.delete();
+      } else {
+        throw Exception('Subject not found with ID: $objectId');
+      }
+    } else {
+      throw Exception(
+          'Failed to delete subject. API response: ${apiResponse.error}');
+    }
   }
 
 

@@ -6,7 +6,7 @@ import 'package:timetabler/AdminPages/AfterLogin.dart';
 import '../AdminPages/AddTeacher.dart';
 import 'package:timetabler/registration/Signup.dart';
 import '../AdminPages/AddRoom.dart';
-import '../MaxSat/SchedulePage.dart';
+import '../MaxSat/Schedule.dart';
 import '../teacherPages/TeacherSchedule.dart';
 import '../teacherPages/teacherAfterLoginPage.dart';
 
@@ -255,6 +255,7 @@ class _LoginState extends State<Login> {
 
     if (response.success) {
       if (teachers.contains(user.username)) {
+        print(user.username);
         Navigator.push(
           // SchedulePage
           // teacherAfterLogin

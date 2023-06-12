@@ -70,7 +70,6 @@ class UpdateRoomButton extends StatelessWidget {
     final ParseResponse apiResponse = await queryRoom.query();
 
     if(type.text.isNotEmpty){
-      print(type.text);
       if (apiResponse.success && apiResponse.results != null && apiResponse.results!.isNotEmpty) {
         final roomObject = apiResponse.results![0];
         roomObject.set<String>(

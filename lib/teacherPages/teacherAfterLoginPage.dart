@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:timetabler/registration/Login.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:timetabler/teacherPages/TeacherSchedule.dart';
+import 'package:timetabler/teacherPages/teacherSchedulePage.dart';
 
-import '../MaxSat/SchedulePage.dart';
+import '../AdminPages/SchedulePage.dart';
+import '../MaxSat/Schedule.dart';
 
 Future<String> getCurrentUserID() async {
   List<String> data = [];
@@ -226,7 +228,34 @@ class TeacherDataView extends StatelessWidget {
                         ),
                       ),
                       onPressed: () async {
+                        // String userName = await getCurrentUserID();
+                        //     getTeachers(userName).then((teachers) {
+                        //       print(teachers);
+                        //       getClassrooms(userName).then((classrooms) {
+                        //         print(classrooms);
+                        //         Navigator.push(
+                        //           context,
+                        //           MaterialPageRoute(
+                        //             builder: (context) => SchedulePage(
+                        //               teachers: teachers,
+                        //               classrooms: classrooms,
+                        //             ),
+                        //           ),
+                        //         );
+                        //       });
+                        //     });
                         String userName = await getCurrentUserID();
+                        List<Schedule> filteredSchedule =
+                            await getSchedule();
+
+                        List<String> daysOfWeek = [
+                          'Sunday',
+                          'Monday',
+                          'Tuesday',
+                          'Wednesday',
+                          'Thursday',
+                        ];
+
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -235,48 +264,71 @@ class TeacherDataView extends StatelessWidget {
                                 title: const Text('מערכת שעות'),
                               ),
                               body: ListView.builder(
-                                itemCount: getSchedule(userName).length,
+                                itemCount: daysOfWeek.length,
                                 itemBuilder: (context, index) {
-                                  final item = getSchedule(userName)[index];
+                                  final day = daysOfWeek[index];
+                                  final lessonsInDay = filteredSchedule
+                                      .where(
+                                          (item) => daysHash[item.day] == day)
+                                      .toList();
 
                                   return Card(
-                                    child: ListTile(
-                                      title: Row(
-                                        children: [
-                                          Icon(Icons.person),
-                                          const SizedBox(width: 8),
-                                          Text(
-                                            item.teacher.name,
+                                    child: Column(
+                                      children: [
+                                        ListTile(
+                                          title: Text(
+                                            day,
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                        ],
-                                      ),
-                                      subtitle: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Icon(Icons.location_on),
-                                              const SizedBox(width: 8),
-                                              Text('${item.classroom.name}'),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              Icon(Icons.calendar_today),
-                                              const SizedBox(width: 8),
-                                              Text('${daysHash[item.day]}'),
-                                              const SizedBox(width: 8),
-                                              Icon(Icons.access_time),
-                                              const SizedBox(width: 8),
-                                              Text(
-                                                  '${item.hour}:00 - ${item.hour + 1}:00'),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
+                                        ),
+                                        ListView.builder(
+                                          shrinkWrap: true,
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+                                          itemCount: lessonsInDay.length,
+                                          itemBuilder: (context, index) {
+                                            final item = lessonsInDay[index];
+
+                                            return ListTile(
+                                              title: Row(
+                                                children: [
+                                                  Icon(Icons.person),
+                                                  const SizedBox(width: 8),
+                                                  Text(
+                                                    item.teacher.name,
+                                                    style: const TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ],
+                                              ),
+                                              subtitle: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Icon(Icons.location_on),
+                                                      const SizedBox(width: 8),
+                                                      Text(
+                                                          '${item.classroom.name}'),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Icon(Icons.access_time),
+                                                      const SizedBox(width: 8),
+                                                      Text(
+                                                          '${item.hour}:00 - ${item.hour + 1}:00'),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ],
                                     ),
                                   );
                                 },
@@ -350,4 +402,150 @@ class Message {
       },
     );
   }
+}
+
+
+Future<String> getSchoolIdFromCurrentUserTeacher() async {
+  final ParseUser currentUser = await ParseUser.currentUser();
+  if (currentUser != null) {
+    final String schoolId = currentUser.get('school_id');
+    return schoolId;
+  } else {
+    throw Exception('No current user found.');
+  }
+}
+
+Future<List<Teacher>> getTeachers(String username) async {
+  String schoolId = await getSchoolIdByUsername(username);
+  QueryBuilder<ParseObject> queryTeacher =
+      QueryBuilder<ParseObject>(ParseObject('Teacher'));
+  queryTeacher.whereEqualTo('school_id', schoolId); // Add this line to filter by school ID
+  final ParseResponse apiResponse = await queryTeacher.query();
+  Map<String, List<int>> hours = {
+    'Sunday': [],
+    'Monday': [],
+    'Tuesday': [],
+    'Wednesday': [],
+    'Thursday': [],
+  };
+  if (apiResponse.success && apiResponse.results != null) {
+    List<ParseObject> teacherData = apiResponse.results as List<ParseObject>;
+
+    List<Teacher> teachers = [];
+
+    for (var teacher in teacherData) {
+      String teacherId = teacher.get('id_number');
+      List<String> teacherSubject = [];
+      teacherSubject.add(teacher.get('Subject'));
+      List<int> teacherAvailableHours = [8, 9, 10, 11, 13, 14];
+      if (teacher.get('available_hours') == null) {
+        Map<String, List<int>> hours = {
+          'Sunday': teacherAvailableHours,
+          'Monday': teacherAvailableHours,
+          'Tuesday': teacherAvailableHours,
+          'Wednesday': teacherAvailableHours,
+          'Thursday': teacherAvailableHours,
+        };
+        teachers.add(
+          Teacher(teacherId, teacherSubject, hours),
+        );
+      } else {
+        Map<String, String> convertedMap = {};
+
+        teacher.get('available_hours').forEach((key, value) {
+          convertedMap[key] = value.toString();
+        });
+        teachers.add(
+          Teacher(teacherId, teacherSubject, reformatHours(convertedMap)),
+        );
+      }
+    }
+
+    return teachers;
+  } else {
+    return []; // or throw an exception here if needed
+  }
+}
+
+
+Future<String> getSchoolIdByUsername(String username) async {
+  QueryBuilder<ParseObject> queryTeacher =
+      QueryBuilder<ParseObject>(ParseObject('Teacher'));
+  queryTeacher.whereEqualTo('id_number', username); // Add this line to filter by username
+
+  final ParseResponse apiResponse = await queryTeacher.query();
+
+  if (apiResponse.success && apiResponse.results != null) {
+    List<ParseObject> teacherData = apiResponse.results as List<ParseObject>;
+
+    if (teacherData.isNotEmpty) {
+      // print(teacherData);
+      // print(teacherData[0]["school_id"]);
+      // ParseObject teacher = teacherData.first;
+      String schoolId = teacherData[0]["school_id"];
+      return schoolId;
+    } else {
+      throw Exception('Teacher not found with username: $username');
+    }
+  } else {
+    throw Exception('Failed to retrieve teacher. API response: ${apiResponse.error}');
+  }
+}
+
+
+
+
+Future<List<Classroom>> getClassrooms(String username) async {
+  String schoolId = await getSchoolIdByUsername(username);
+  QueryBuilder<ParseObject> queryRoom =
+      QueryBuilder<ParseObject>(ParseObject('Room'));
+  queryRoom.whereEqualTo('schoolId', schoolId); // Add this line to filter by school ID
+  final ParseResponse apiResponse = await queryRoom.query();
+
+  if (apiResponse.success && apiResponse.results != null) {
+    List<ParseObject> roomData = apiResponse.results as List<ParseObject>;
+
+    List<Classroom> rooms = [];
+
+    for (var room in roomData) {
+      String roomId = room.get('room_id');
+      String sets = room.get('sets');
+      rooms.add(Classroom(roomId, sets));
+    }
+
+
+    return rooms;
+  } else {
+    return []; // or throw an exception here if needed
+  }
+}
+
+Future<List<Schedule>> getSchedule() async {
+  // Obtain teachers array from getTeacherNamesFromDb()
+  String username = await getCurrentUserID();
+  List<Teacher> teachers = await getTeachers(username);
+  // for (var teacher in teachers) {
+
+  //   print("teacher data for "+teacher.name);
+  //   print(teacher.availableHours);
+  // }
+
+  // Obtain classrooms array from getClassroomsFromDb()
+  List<Classroom> classrooms = await getClassrooms(username);
+
+  // Create TeacherSchedulePage object
+  // TeacherSchedulePage teacherSchedulePage = TeacherSchedulePage(
+  //   teachers: teachers,
+  //   classrooms: classrooms,
+  // );
+  List<Schedule> result = buildSchedule(teachers, classrooms, students);
+  List<Schedule> sch = [];
+  for (Schedule s in result) {
+    if (s.teacher.name == username) {
+      sch.add(s);
+    }
+  }
+  // print(sch);
+  return sch;
+
 }

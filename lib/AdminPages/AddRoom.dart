@@ -209,10 +209,22 @@ class _AddStudent extends State<Room> {
     );
   }
 
+Future<String> getSchoolIdFromCurrentUser() async {
+  final ParseUser currentUser = await ParseUser.currentUser();
+  if (currentUser != null) {
+    final String schoolId = currentUser.get('SchoolId');
+    return schoolId;
+  } else {
+    throw Exception('No current user found.');
+  }
+}
+
   Future<void> saveRoom(String sets, String id, String room_type) async {
+    String schoolId = await getSchoolIdFromCurrentUser();
     final room = ParseObject('Room')
       ..set('sets', sets)
       ..set('room_id', id)
+      ..set('schoolId', schoolId)
       ..set('room_type', room_type);
     await room.save();
   }

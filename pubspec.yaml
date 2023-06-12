@@ -43,6 +43,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   parse_server_sdk_flutter: ^3.1.2
   getwidget: ^3.0.1
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:

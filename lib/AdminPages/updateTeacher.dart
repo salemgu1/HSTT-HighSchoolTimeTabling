@@ -67,7 +67,6 @@ class UpdateTeacherDetailsButton extends StatelessWidget {
     final ParseResponse apiResponse = await queryTeacher.query();
 
     if(name.text.isNotEmpty){
-      print(name.text);
       if (apiResponse.success && apiResponse.results != null && apiResponse.results!.isNotEmpty) {
         final teacherObject = apiResponse.results![0];
         teacherObject.set<String>(

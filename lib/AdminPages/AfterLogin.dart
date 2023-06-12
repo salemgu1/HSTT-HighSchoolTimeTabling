@@ -8,7 +8,7 @@ import '../AdminPages/AddStudent.dart';
 import '../AdminPages/AddSubject.dart';
 import '../AdminPages/AddRoom.dart';
 import '../AdminPages/OtherActions.dart';
-import '../MaxSat/SchedulePage.dart';
+import '../MaxSat/Schedule.dart';
 
 Map<int, String> daysHash = {
   1: 'Sunday',
@@ -159,20 +159,6 @@ class AfterLogin extends StatelessWidget {
                 SizedBox(height: 25),
                 ListTile(
                   leading: Icon(Icons.add),
-                  title: Text('By room'),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ScheduleSearchScreen(
-                                schedules: schedule,
-                              )),
-                    );
-                  },
-                ),
-                SizedBox(height: 25),
-                ListTile(
-                  leading: Icon(Icons.add),
                   title: Text('הוספת כיתה'),
                   onTap: () {
                     Navigator.push(
@@ -186,11 +172,22 @@ class AfterLogin extends StatelessWidget {
                   leading: Icon(Icons.calendar_month),
                   title: Text('צפייה במערכת שעות של המורים'),
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SchedulePage()),
-                    );
+                    getTeachersBySchoolIdFromDb().then((teachers) {
+                      // print(teachers);
+                      getClassroomsFromDb().then((classrooms) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SchedulePage(
+                              teachers: teachers,
+                              classrooms: classrooms,
+                            ),
+                          ),
+                        );
+                      });
+                    });
                   },
+
                 ),
                 SizedBox(height: 25),
                 ListTile(

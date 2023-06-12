@@ -188,6 +188,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "intl",
+      "rootUri": "file:///Users/salemgod/.pub-cache/hosted/pub.dev/intl-0.18.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "js",
       "rootUri": "file:///Users/salemgod/.pub-cache/hosted/pub.dev/js-0.6.5",
       "packageUri": "lib/",
@@ -530,7 +536,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2023-04-27T14:17:34.303109Z",
+  "generated": "2023-06-07T14:10:16.129342Z",
   "generator": "pub",
   "generatorVersion": "2.19.5"
 }

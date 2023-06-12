@@ -80,6 +80,7 @@ class _RoomsState extends State<Rooms> {
                                           color: Colors.blue,
                                         ),
                                         onPressed: () async {
+                                          deleteRoomById(snapshot.data![index]['objectId']);
                                           setState(() {
                                             final snackBar = SnackBar(
                                               content: Text("Room deleted!"),
@@ -103,10 +104,22 @@ class _RoomsState extends State<Rooms> {
     );
   }
 
+  Future<String> getSchoolIdFromCurrentUser() async {
+  final ParseUser currentUser = await ParseUser.currentUser();
+  if (currentUser != null) {
+    final String schoolId = currentUser.get('SchoolId');
+    return schoolId;
+  } else {
+    throw Exception('No current user found.');
+  }
+}
+
   Future<List<ParseObject>> getRoom() async {
-    QueryBuilder<ParseObject> queryRoom =
-    QueryBuilder<ParseObject>(ParseObject('Room'));
-    final ParseResponse apiResponse = await queryRoom.query();
+    String schoolId = await getSchoolIdFromCurrentUser();
+    QueryBuilder<ParseObject> querySubject =
+        QueryBuilder<ParseObject>(ParseObject('Room'));
+    querySubject.whereEqualTo('schoolId', schoolId); // Add this line to filter by school ID
+    final ParseResponse apiResponse = await querySubject.query();
 
     if (apiResponse.success && apiResponse.results != null) {
       return apiResponse.results as List<ParseObject>;
@@ -116,8 +129,18 @@ class _RoomsState extends State<Rooms> {
   }
 
 
-  Future<void> deleteRoom(String id) async {
+Future<void> deleteRoomById(String roomId) async {
+  final ParseObject roomObject = ParseObject('Room');
+  roomObject.objectId = roomId;
+
+  final ParseResponse response = await roomObject.delete();
+
+  if (response.success) {
+    print('Room deleted successfully');
+  } else {
+    throw Exception('Failed to delete room: ${response.error?.message}');
   }
+}
 
 
   Future<void> updateRoom(String id, bool done) async {

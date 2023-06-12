@@ -2,17 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:timetabler/AdminPages/updateTeacher.dart';
 
-
 class Teachers extends StatefulWidget {
   @override
   _TeachersState createState() => _TeachersState();
   bool isDarkMode = false;
-
 }
 
 class _TeachersState extends State<Teachers> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +21,7 @@ class _TeachersState extends State<Teachers> {
         children: <Widget>[
           Expanded(
               child: FutureBuilder<List<ParseObject>>(
-                  future: getTeacher(),
+                  future: getTeachersBySchoolId(),
                   builder: (context, snapshot) {
                     switch (snapshot.connectionState) {
                       case ConnectionState.none:
@@ -54,10 +50,13 @@ class _TeachersState extends State<Teachers> {
                                 //*************************************
                                 //Get Parse Object Value
                                 // final varTodo = snapshot.data![index];
-                                final teacherId = snapshot.data![index]['id_number'];
-                                final teacherObjectId = snapshot.data![index]['objectId'];
+                                final teacherId =
+                                    snapshot.data![index]['id_number'];
+                                final teacherObjectId =
+                                    snapshot.data![index]['objectId'];
                                 final varName = snapshot.data![index]['name'];
-                                final teacherEmail = snapshot.data![index]['email'];
+                                final teacherEmail =
+                                    snapshot.data![index]['email'];
                                 final varDone = false;
                                 //*************************************
 
@@ -71,13 +70,17 @@ class _TeachersState extends State<Teachers> {
                                           Icons.edit,
                                           color: Colors.blue,
                                         ),
-                                    onPressed: () { Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder:( context) {
-                                    return UpdateTeacherDetailsButton(teacherId: snapshot.data![index]['objectId'],);
-                                    },
-                                    ));},
-
+                                        onPressed: () {
+                                          Navigator.push(context,
+                                              MaterialPageRoute(
+                                            builder: (context) {
+                                              return UpdateTeacherDetailsButton(
+                                                teacherId: snapshot.data![index]
+                                                    ['objectId'],
+                                              );
+                                            },
+                                          ));
+                                        },
                                       ),
                                       IconButton(
                                         icon: Icon(
@@ -85,18 +88,31 @@ class _TeachersState extends State<Teachers> {
                                           color: Colors.blue,
                                         ),
                                         onPressed: () async {
+                                          try {
+                                            await deleteTeacher(teacherObjectId);
 
-                                          setState(() {
-                                            final snackBar = SnackBar(
-                                              content: Text("המורה נמחק!"),
-                                              duration: Duration(seconds: 2),
-                                            );
-                                            ScaffoldMessenger.of(context)
-                                              ..removeCurrentSnackBar()
-                                              ..showSnackBar(snackBar);
-                                          });
+                                            setState(() {
+                                              final snackBar = SnackBar(
+                                                content: Text("המורה נמחק!"),
+                                                duration: Duration(seconds: 2),
+                                              );
+                                              ScaffoldMessenger.of(context)
+                                                ..removeCurrentSnackBar()
+                                                ..showSnackBar(snackBar);
+                                            });
+                                          } catch (e) {
+                                            setState(() {
+                                              final snackBar = SnackBar(
+                                                content: Text(
+                                                    "Failed to delete teacher: $e"),
+                                                duration: Duration(seconds: 2),
+                                              );
+                                              ScaffoldMessenger.of(context)
+                                                ..removeCurrentSnackBar()
+                                                ..showSnackBar(snackBar);
+                                            });
+                                          }
                                         },
-
                                       ),
                                     ],
                                   ),
@@ -110,9 +126,12 @@ class _TeachersState extends State<Teachers> {
     );
   }
 
-  Future<List<ParseObject>> getTeacher() async {
+  Future<List<ParseObject>> getTeachersBySchoolId() async {
+    String schoolId = await getSchoolIdFromCurrentUser();
     QueryBuilder<ParseObject> queryTeacher =
-    QueryBuilder<ParseObject>(ParseObject('Teacher'));
+        QueryBuilder<ParseObject>(ParseObject('Teacher'));
+    queryTeacher.whereEqualTo(
+        'school_id', schoolId); // Add this line to filter by school ID
     final ParseResponse apiResponse = await queryTeacher.query();
 
     if (apiResponse.success && apiResponse.results != null) {
@@ -122,38 +141,43 @@ class _TeachersState extends State<Teachers> {
     }
   }
 
+  Future<String> getSchoolIdFromCurrentUser() async {
+    final ParseUser currentUser = await ParseUser.currentUser();
+    if (currentUser != null) {
+      final String schoolId = currentUser.get('SchoolId');
+      return schoolId;
+    } else {
+      throw Exception('No current user found.');
+    }
+  }
 
-  Future<List> deleteTeacher(String teacherEmail) async {
-    QueryBuilder<ParseUser> queryUsers =
-    QueryBuilder<ParseUser>(ParseUser.forQuery());
-    final ParseResponse apiResponse = await queryUsers.query();
+  Future<void> deleteTeacher(String objectId) async {
+
+    final QueryBuilder<ParseObject> queryTeacher =
+        QueryBuilder<ParseObject>(ParseObject('Teacher'));
+    queryTeacher.whereEqualTo('objectId', objectId);
+
+    final ParseResponse apiResponse = await queryTeacher.query();
 
     if (apiResponse.success && apiResponse.results != null) {
-      for (int i = 0; i < apiResponse.results!.length; i++) {
-        if (apiResponse.results![i].email == teacherEmail) {
-          print("adasdasdas");
-        }
+      print("ASdasdsad");
+
+      final List<ParseObject> teachers =
+          apiResponse.results as List<ParseObject>;
+
+      if (teachers.isNotEmpty) {
+        final ParseObject teacher = teachers.first;
+        await teacher.delete();
+      } else {
+        throw Exception('Teacher not found with ID: $objectId');
       }
-      return apiResponse.results as List<ParseObject>;
     } else {
-      return [];
+      throw Exception(
+          'Failed to delete teacher. API response: ${apiResponse.error}');
     }
-
-
-    // final user = ParseObject('User')..objectId = ;
-    // final teacher = ParseObject('Teacher')..objectId = teacherId;
-    //
-    // try {
-    //   await teacher.delete();
-    //   print('Teacher deleted successfully.');
-    // } catch (e) {
-    //   print('Error deleting teacher: ${e.toString()}');
-    // }
-
   }
 
 
-  Future<void> updateTeacher(String id, bool done) async {
-  }
 
+  Future<void> updateTeacher(String id, bool done) async {}
 }

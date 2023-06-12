@@ -323,12 +323,13 @@ class _TeacherState extends State<TeacherUser> {
 
   Future<void> saveTeacher(String name, String email, String id,
       String school_id, String Subject) async {
-    print(Subject);
     final teacher = ParseObject('Teacher')
       ..set('name', name)..set('email', email)..set('id_number', id)..set(
           'school_id', school_id)..set('Subject', Subject);
-    print(teacher["email"]);
+
     await teacher.save();
+
+
   }
 
   Future<List<ParseObject>> getTeacher() async {

@@ -17,6 +17,7 @@ class _SignupState extends State<Signup> {
   final controllerLastName = TextEditingController();
   final controllerPassword = TextEditingController();
   final controllerEmail = TextEditingController();
+  final controllerSchoolId = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +89,26 @@ class _SignupState extends State<Signup> {
                                 borderSide: BorderSide(color: Colors.black),
                               ),
                               hintText: "מספר מזהה",
+                              hintStyle: TextStyle(color: hintTextColor),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 30),
+                          TextField(
+                            controller: controllerSchoolId,
+                            style: TextStyle(color: textColor),
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(color: borderColor),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(color: Colors.black),
+                              ),
+                              hintText: "מזהה בית ספר",
                               hintStyle: TextStyle(color: hintTextColor),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
@@ -285,10 +306,12 @@ class _SignupState extends State<Signup> {
     final LastName = controllerLastName.text.trim();
     final email = controllerEmail.text.trim();
     final password = controllerPassword.text.trim();
+    final schoolId = controllerSchoolId.text.trim();
 
     final user = ParseUser.createUser(id, password, email)
       ..set('FirstName', FirstName)
       ..set('LastName', LastName)
+      ..set('SchoolId', schoolId)
       ..set('isAdmin', true)
       ..set('isTeacher', false)
       ..set('isStudent', false);

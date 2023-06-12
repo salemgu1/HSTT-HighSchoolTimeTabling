@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../MaxSat/SchedulePage.dart';
+import '../MaxSat/Schedule.dart';
 
 class ScheduleSearchScreen extends StatefulWidget {
   final List<Schedule> schedules;
