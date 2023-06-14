@@ -44,8 +44,11 @@ class Schedule {
 
 List<Schedule> buildSchedule(List<Teacher> teachers, List<Classroom> classrooms,
     List<StudentSchedule> students) {
-      print(teachers);
-      print(classrooms);
+      print("buildSchedulebuildSchedulebuildSchedulebuildSchedule");
+      for (var teacher in teachers) {
+        print(teacher.name);
+        print(teacher.availableHours);
+      }
   List<Schedule> schedule = [];
   List<String> subjects = []; // list of all unique subjects
   teachers.forEach((teacher) => subjects.addAll(teacher.subjects));
@@ -57,9 +60,6 @@ List<Schedule> buildSchedule(List<Teacher> teachers, List<Classroom> classrooms,
     for (int h = 8; h <= 14; h++) {
       for (String subject in subjects) {
         List<Teacher> availableTeachers = teachers.where((teacher) => teacher.subjects.contains(subject) && teacher.availableHours.containsKey(daysHash[d]) && (teacher.availableHours[daysHash[d]])!.contains(h)).toList();
-        // for (var element in availableTeachers) {
-        //   print(element.name);
-        // }
         List<Classroom> availableClassrooms = classrooms
             .where((classroom) =>
                 int.parse(classroom.capacity) >=
@@ -69,9 +69,6 @@ List<Schedule> buildSchedule(List<Teacher> teachers, List<Classroom> classrooms,
         
         if (availableTeachers.isNotEmpty && availableClassrooms.isNotEmpty) {
           Teacher selectedTeacher = availableTeachers[0];
-          // print(selectedTeacher);
-          // print("selectedTeacher");
-          // print(selectedTeacher.name);
           Classroom selectedClassroom = availableClassrooms[0];
           schedule
               .add(Schedule(selectedTeacher, selectedClassroom, subject, d, h));
@@ -160,15 +157,13 @@ Future<List<Teacher>> getTeachersBySchoolIdFromDb() async {
     List<Teacher> teachers = [];
 
     for (var teacher in teacherData) {
-
-
       String teacherId = teacher.get('id_number');
       List<String> teacherSubject = [];
       teacherSubject.add(teacher.get('Subject'));
       List<int> teacherAvailableHours = [8, 9, 10, 11,12, 13, 14];
       if (teacher.get('available_hours') == null) {
-        print("available_hours is null"+ teacher.get("id_number"));
-        print("available_hours is null");
+        print("teacherIdteacherd");
+
         Map<String, List<int>> hours = {
           'Sunday': teacherAvailableHours,
           'Monday': teacherAvailableHours,
@@ -185,6 +180,8 @@ Future<List<Teacher>> getTeachersBySchoolIdFromDb() async {
         teacher.get('available_hours').forEach((key, value) {
           convertedMap[key] = value.toString();
         });
+        print("teacherIdteacherIdteacherIdteacherId");
+        print(teacherId);
         teachers.add(
           Teacher(teacherId, teacherSubject, reformatHours(convertedMap)),
         );
@@ -227,13 +224,15 @@ Map<String,List<int>> reformatHours(Map<String, String> hours) {
       if(!hours[days[i]]!.contains("end")){
         print("end");
 
-        hours[days[i]] = hours[days[i]]! +  " end: 14:00 AM";
+        hours[days[i]] = hours[days[i]]! +  "end: 14:00 AM";
       }
       hoursList[days[i]] = getHours(hours[days[i]]!);
     }else{
       hoursList[days[i]] = [8, 9, 10, 11, 13, 14];
     }
   }
+  print("hoursListhoursListhoursListhoursListhoursListhoursListhoursListhoursListhoursList");
+  print(hoursList);
   return hoursList;
 }
 

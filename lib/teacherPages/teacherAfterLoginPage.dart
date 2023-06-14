@@ -228,25 +228,8 @@ class TeacherDataView extends StatelessWidget {
                         ),
                       ),
                       onPressed: () async {
-                        // String userName = await getCurrentUserID();
-                        //     getTeachers(userName).then((teachers) {
-                        //       print(teachers);
-                        //       getClassrooms(userName).then((classrooms) {
-                        //         print(classrooms);
-                        //         Navigator.push(
-                        //           context,
-                        //           MaterialPageRoute(
-                        //             builder: (context) => SchedulePage(
-                        //               teachers: teachers,
-                        //               classrooms: classrooms,
-                        //             ),
-                        //           ),
-                        //         );
-                        //       });
-                        //     });
                         String userName = await getCurrentUserID();
-                        List<Schedule> filteredSchedule =
-                            await getSchedule();
+                        List<Schedule> filteredSchedule = await getSchedule();
 
                         List<String> daysOfWeek = [
                           'Sunday',
@@ -263,79 +246,167 @@ class TeacherDataView extends StatelessWidget {
                               appBar: AppBar(
                                 title: const Text('מערכת שעות'),
                               ),
-                              body: ListView.builder(
-                                itemCount: daysOfWeek.length,
-                                itemBuilder: (context, index) {
-                                  final day = daysOfWeek[index];
-                                  final lessonsInDay = filteredSchedule
-                                      .where(
-                                          (item) => daysHash[item.day] == day)
-                                      .toList();
-
-                                  return Card(
-                                    child: Column(
-                                      children: [
-                                        ListTile(
-                                          title: Text(
-                                            day,
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                        ListView.builder(
-                                          shrinkWrap: true,
-                                          physics:
-                                              const NeverScrollableScrollPhysics(),
-                                          itemCount: lessonsInDay.length,
-                                          itemBuilder: (context, index) {
-                                            final item = lessonsInDay[index];
-
-                                            return ListTile(
-                                              title: Row(
-                                                children: [
-                                                  Icon(Icons.person),
-                                                  const SizedBox(width: 8),
-                                                  Text(
-                                                    item.teacher.name,
-                                                    style: const TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  ),
-                                                ],
+                              body: SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                    for (final day in daysOfWeek)
+                                      Card(
+                                        child: Column(
+                                          children: [
+                                            ListTile(
+                                              title: Text(
+                                                day,
+                                                style: const TextStyle(fontWeight: FontWeight.bold),
                                               ),
-                                              subtitle: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Row(
-                                                    children: [
-                                                      Icon(Icons.location_on),
-                                                      const SizedBox(width: 8),
-                                                      Text(
-                                                          '${item.classroom.name}'),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Icon(Icons.access_time),
-                                                      const SizedBox(width: 8),
-                                                      Text(
-                                                          '${item.hour}:00 - ${item.hour + 1}:00'),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                          },
+                                            ),
+                                            ListView.builder(
+                                              shrinkWrap: true,
+                                              physics: const NeverScrollableScrollPhysics(),
+                                              itemCount: filteredSchedule.length,
+                                              itemBuilder: (context, index) {
+                                                final item = filteredSchedule[index];
+                                                if (daysHash[item.day] == day) {
+                                                  return ListTile(
+                                                    title: Row(
+                                                      children: [
+                                                        Icon(Icons.person),
+                                                        const SizedBox(width: 8),
+                                                        Text(
+                                                          item.teacher.name,
+                                                          style: const TextStyle(
+                                                            fontWeight: FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    subtitle: Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: [
+                                                        Row(
+                                                          children: [
+                                                            Icon(Icons.location_on),
+                                                            const SizedBox(width: 8),
+                                                            Text('${item.classroom.name}'),
+                                                          ],
+                                                        ),
+                                                        Row(
+                                                          children: [
+                                                            Icon(Icons.access_time),
+                                                            const SizedBox(width: 8),
+                                                            Text(
+                                                              '${item.hour}:00 - ${item.hour + 1}:00',
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  );
+                                                } else {
+                                                  return Container(); // Empty container if no lesson on this day
+                                                }
+                                              },
+                                            ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
-                                  );
-                                },
+                                      ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                         );
+
+                        // String userName = await getCurrentUserID();
+                        // List<Schedule> filteredSchedule = await getSchedule();
+
+                        // List<String> daysOfWeek = [
+                        //   'Sunday',
+                        //   'Monday',
+                        //   'Tuesday',
+                        //   'Wednesday',
+                        //   'Thursday',
+                        // ];
+
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => Scaffold(
+                        //       appBar: AppBar(
+                        //         title: const Text('מערכת שעות'),
+                        //       ),
+                        //       body: ListView.builder(
+                        //         itemCount: daysOfWeek.length,
+                        //         itemBuilder: (context, index) {
+                        //           final day = daysOfWeek[index];
+                        //           final lessonsInDay = filteredSchedule
+                        //               .where(
+                        //                   (item) => daysHash[item.day] == day)
+                        //               .toList();
+
+                        //           return Card(
+                        //             child: Column(
+                        //               children: [
+                        //                 ListTile(
+                        //                   title: Text(
+                        //                     day,
+                        //                     style: const TextStyle(
+                        //                         fontWeight: FontWeight.bold),
+                        //                   ),
+                        //                 ),
+                        //                 ListView.builder(
+                        //                   shrinkWrap: true,
+                        //                   physics:
+                        //                       const NeverScrollableScrollPhysics(),
+                        //                   itemCount: lessonsInDay.length,
+                        //                   itemBuilder: (context, index) {
+                        //                     final item = lessonsInDay[index];
+
+                        //                     return ListTile(
+                        //                       title: Row(
+                        //                         children: [
+                        //                           Icon(Icons.person),
+                        //                           const SizedBox(width: 8),
+                        //                           Text(
+                        //                             item.teacher.name,
+                        //                             style: const TextStyle(
+                        //                                 fontWeight:
+                        //                                     FontWeight.bold),
+                        //                           ),
+                        //                         ],
+                        //                       ),
+                        //                       subtitle: Column(
+                        //                         crossAxisAlignment:
+                        //                             CrossAxisAlignment.start,
+                        //                         children: [
+                        //                           Row(
+                        //                             children: [
+                        //                               Icon(Icons.location_on),
+                        //                               const SizedBox(width: 8),
+                        //                               Text(
+                        //                                   '${item.classroom.name}'),
+                        //                             ],
+                        //                           ),
+                        //                           Row(
+                        //                             children: [
+                        //                               Icon(Icons.access_time),
+                        //                               const SizedBox(width: 8),
+                        //                               Text(
+                        //                                   '${item.hour}:00 - ${item.hour + 1}:00'),
+                        //                             ],
+                        //                           ),
+                        //                         ],
+                        //                       ),
+                        //                     );
+                        //                   },
+                        //                 ),
+                        //               ],
+                        //             ),
+                        //           );
+                        //         },
+                        //       ),
+                        //     ),
+                        //   ),
+                        // );
                       },
                       child: const Text(
                         'מערכת שעות',
@@ -404,7 +475,6 @@ class Message {
   }
 }
 
-
 Future<String> getSchoolIdFromCurrentUserTeacher() async {
   final ParseUser currentUser = await ParseUser.currentUser();
   if (currentUser != null) {
@@ -419,7 +489,8 @@ Future<List<Teacher>> getTeachers(String username) async {
   String schoolId = await getSchoolIdByUsername(username);
   QueryBuilder<ParseObject> queryTeacher =
       QueryBuilder<ParseObject>(ParseObject('Teacher'));
-  queryTeacher.whereEqualTo('school_id', schoolId); // Add this line to filter by school ID
+  queryTeacher.whereEqualTo(
+      'school_id', schoolId); // Add this line to filter by school ID
   final ParseResponse apiResponse = await queryTeacher.query();
   Map<String, List<int>> hours = {
     'Sunday': [],
@@ -467,11 +538,11 @@ Future<List<Teacher>> getTeachers(String username) async {
   }
 }
 
-
 Future<String> getSchoolIdByUsername(String username) async {
   QueryBuilder<ParseObject> queryTeacher =
       QueryBuilder<ParseObject>(ParseObject('Teacher'));
-  queryTeacher.whereEqualTo('id_number', username); // Add this line to filter by username
+  queryTeacher.whereEqualTo(
+      'id_number', username); // Add this line to filter by username
 
   final ParseResponse apiResponse = await queryTeacher.query();
 
@@ -488,18 +559,17 @@ Future<String> getSchoolIdByUsername(String username) async {
       throw Exception('Teacher not found with username: $username');
     }
   } else {
-    throw Exception('Failed to retrieve teacher. API response: ${apiResponse.error}');
+    throw Exception(
+        'Failed to retrieve teacher. API response: ${apiResponse.error}');
   }
 }
-
-
-
 
 Future<List<Classroom>> getClassrooms(String username) async {
   String schoolId = await getSchoolIdByUsername(username);
   QueryBuilder<ParseObject> queryRoom =
       QueryBuilder<ParseObject>(ParseObject('Room'));
-  queryRoom.whereEqualTo('schoolId', schoolId); // Add this line to filter by school ID
+  queryRoom.whereEqualTo(
+      'schoolId', schoolId); // Add this line to filter by school ID
   final ParseResponse apiResponse = await queryRoom.query();
 
   if (apiResponse.success && apiResponse.results != null) {
@@ -512,7 +582,6 @@ Future<List<Classroom>> getClassrooms(String username) async {
       String sets = room.get('sets');
       rooms.add(Classroom(roomId, sets));
     }
-
 
     return rooms;
   } else {
@@ -547,5 +616,4 @@ Future<List<Schedule>> getSchedule() async {
   }
   // print(sch);
   return sch;
-
 }
